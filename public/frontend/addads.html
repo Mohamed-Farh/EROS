@@ -1,0 +1,397 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+
+    <title>
+        بوابتك
+    </title>
+
+    <link rel="stylesheet" href='fontawesome/css/all.min.css'>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap11/css/fileinput.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="bawabtouk-sec">
+        <div class="container">
+            <section class="top-nav">
+                <div class="navbar-sec">
+                    <div class="hamburger-menu">
+                        <div class="logo-link">
+                            <p><a href="index.html">بوابتك</a></p>
+                        </div>
+                        <input id="menu__toggle" type="checkbox" />
+                        <label class="menu__btn" for="menu__toggle">
+                            <span></span>
+                        </label>
+
+                        <ul class="menu__box text-right">
+                            <li><a class="menu__item" href="index.html">الرئيسية</a></li>
+                            <li><a class="menu__item" href="profile.html">الحساب الشخصي</a></li>
+                            <li><a class="menu__item" href="addads.html">اضافة </a></li>
+                            <li><a class="menu__item" href="favourite.html">المفضلة</a></li>
+                            <li><a class="menu__item" href="notifications.html">الاشعارات</a></li>
+                            <li><a class="menu__item" href="setting.html">الاعدادات</a></li>
+                            <li><a class="menu__item" href="about.html">حول التطبيق</a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="contain-sec py-4 ">
+                <div class="row py-2 start-containt-search">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <form>
+
+                            <select class="search-select">
+                                <option selected hidden>المحافظة</option>
+                                <option>المنصورة</option>
+                                <option>القاهرة</option>
+                            </select>
+                            <select>
+                                <option selected hidden>المدينة</option>
+                                <option>الدقهلية</option>
+                                <option>طلخا</option>
+                            </select>
+                            <button class="search-btn"> بحث</button>
+                        </form>
+
+                    </div>
+
+                </div>
+                <div class="description-sec py-3 ads-sec-btn">
+                    <div class="btn-secs">
+                        <div class="row">
+                            <div class="col-12 mt-2">
+                                <button class="add-ads-buildings add-buildings">اضافة عقار</button>
+
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button class="add-ads-buildings add-car">اضافة سيارة</button>
+
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button class="add-ads-buildings add-productss">اضافة منتج</button>
+
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button class="add-ads-buildings add-services">اضافة خدمات</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="add-buildings-ads-sec py-4 text-center" style="display: none;">
+                    <div class="upload-image-gallery">
+                        <div class="row">
+                            <div class="col-12">
+                                <form>
+                                    <input id="input-id" type="file" name="images[]" multiple="multiple" class="file"
+                                        data-preview-file-type="text">
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="نوع العقار" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="number" placeholder="عدد الغرف" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="عدد الحمام" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="المساحة" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="رقم الدور" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="الكماليات" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="url" placeholder="الموقع" />
+                            </form>
+
+                        </div>
+
+                    </div>
+                    <div class="contact-sec-ads py-2">
+                        <h6>للتواصل</h6>
+                        <div class="row mt-1">
+                            <div class="col-12">
+                                <form>
+                                    <input type="text" placeholder="موبايل" />
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="send-btn">
+                        <button>تنزيل</button>
+
+                    </div>
+
+
+                </div>
+                <div class="add-car-ads-sec py-4 text-center" style="display: none;">
+                    <div class="upload-image-gallery">
+                        <div class="row">
+                            <div class="col-12">
+                                <form>
+                                    <input id="input-id" type="file" name="images[]" multiple="multiple" class="file"
+                                        data-preview-file-type="text">
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="نوع " />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="الحالة" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="number" placeholder="الكيلومترات" />
+                            </form>
+
+                        </div>
+
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="ناقل الحركة" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="الموديل" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="السنة" />
+                            </form>
+
+                        </div>
+
+                    </div>
+                    <div class="contact-sec-ads py-2">
+                        <h6>للتواصل</h6>
+                        <div class="row mt-1">
+                            <div class="col-12">
+                                <form>
+                                    <input type="text" placeholder="موبايل" />
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="send-btn">
+                        <button>تنزيل</button>
+
+                    </div>
+
+
+                </div>
+                <div class="add-products-ads-sec py-4 text-center" style="display: none;">
+                    <div class="upload-image-gallery">
+                        <div class="row">
+                            <div class="col-12">
+                                <form>
+                                    <input id="input-id" type="file" name="images[]" multiple="multiple" class="file"
+                                        data-preview-file-type="text">
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="نوع " />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="اسم المنتج" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="الكمية " />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="الحالة" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="date" placeholder="تاريخ الانتاج" />
+                            </form>
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="contact-sec-ads py-2">
+                        <h6>للتواصل</h6>
+                        <div class="row mt-1">
+                            <div class="col-12">
+                                <form>
+                                    <input type="text" placeholder="موبايل" />
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="send-btn">
+                        <button>تنزيل</button>
+
+                    </div>
+
+
+                </div>
+                <div class="add-services-ads-sec py-4 text-center" style="display: none;">
+                    <div class="upload-image-gallery">
+                        <div class="row">
+                            <div class="col-12">
+                                <form>
+                                    <input id="input-id" type="file" name="images[]" multiple="multiple" class="file"
+                                        data-preview-file-type="text">
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-2">
+                            <form>
+                                <select>
+                                    <option selected hidden>تعليم</option>
+                                    <option>سكرتارية</option>
+                                    <option>تمريض</option>
+                                    <option>صيدلة</option>
+                                    <option>اسنان</option>
+                                </select>
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <textarea placeholder="الوصف">
+                                </textarea>
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="الشهادة" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="text" placeholder="مستوى الخبرة" />
+                            </form>
+
+                        </div>
+                        <div class="col-12 mt-2">
+                            <form>
+                                <input type="time" placeholder="الاوفات" />
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="contact-sec-ads py-2">
+                        <h6>للتواصل</h6>
+                        <div class="row mt-1">
+                            <div class="col-12">
+                                <form>
+                                    <input type="text" placeholder="موبايل" />
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="send-btn">
+                        <button>تنزيل</button>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/popper.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="bootstrap11/js/fileinput.min.js"></script>
+</body>
+
+</html>
