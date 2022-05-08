@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\EmailController;
+use App\Http\Controllers\Backend\HomeAboutController;
 use App\Http\Controllers\Backend\HomeSliderController;
 use App\Http\Controllers\Backend\LocationController;
 use App\Http\Controllers\Backend\LogoController;
@@ -162,6 +163,12 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
             Route::post('/sliders/removeImage', [HomeSliderController::class,'removeImage'])->name('sliders.removeImage');
             Route::get('sliders-changeStatus', [HomeSliderController::class,'changeStatus'])->name('sliders.changeStatus');
             Route::post('sliders-destroyAll', [HomeSliderController::class,'massDestroy'])->name('sliders.massDestroy');
+
+            //About Us
+            Route::resource('home_abouts',HomeAboutController::class);
+            Route::post('/home_abouts/removeImage', [HomeAboutController::class,'removeImage'])->name('home_abouts.removeImage');
+            Route::get('home_abouts-changeStatus', [HomeAboutController::class,'changeStatus'])->name('home_abouts.changeStatus');
+            Route::post('home_abouts-destroyAll', [HomeAboutController::class,'massDestroy'])->name('home_abouts.massDestroy');
 
             // Route::resource('projects',HomeProjectController::class);
             // Route::post('/projects/removeImage', 'Backend\HomeProjectController@removeImage')->name('projects.removeImage');

@@ -10,32 +10,32 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class HomeSliderController extends Controller
+class HomeAboutController extends Controller
 {
 
     public function index()
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_sliders')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_home_abouts')) {
             return redirect('admin/index');
         }
 
-        $sliders = HomePage::whereType('Slider')->latest()->paginate(10);
-        return view('backend.sliders.index', compact('sliders'));
+        $home_abouts = HomePage::whereType('About Us')->latest()->paginate(10);
+        return view('backend.home_abouts.index', compact('home_abouts'));
     }
 
 
     public function create()
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_sliders')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_home_abouts')) {
             return redirect('admin/index');
         }
-        return view('backend.sliders.create');
+        return view('backend.home_abouts.create');
     }
 
 
     public function store(SliderRequest $request)
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_sliders')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_home_abouts')) {
             return redirect('admin/index');
         }
 
@@ -44,13 +44,13 @@ class HomeSliderController extends Controller
         $input['button_text']   = $request->button_text;
         $input['button_link']   = $request->button_link;
         $input['video']         = $request->video;
-        $input['type']          = 'Slider';
+        $input['type']          = 'About Us';
         $input['status']        = $request->status;
 
         if ($image = $request->file('image')) {
             $filename = time() . md5(uniqid()) .'.'.$image->getClientOriginalExtension();
-            $path = ('images/home_slider/' . $filename);
-            $path_data = ('images/home_slider/' . $filename);
+            $path = ('images/home_about/' . $filename);
+            $path_data = ('images/home_about/' . $filename);
             // Image::make($image->getRealPath())->resize(600, 450, function ($constraint) {
             //     $constraint->aspectRatio();
             //     $constraint->upsize();
@@ -64,7 +64,7 @@ class HomeSliderController extends Controller
 
         HomePage::create($input);
         Alert::success('Home Slider Created Successfully', 'Success Message');
-        return redirect()->route('admin.sliders.index');
+        return redirect()->route('admin.home_abouts.index');
 
     }
 
@@ -74,18 +74,18 @@ class HomeSliderController extends Controller
         //
     }
 
-    public function edit(HomePage $slider)
+    public function edit(HomePage $home_about)
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_sliders')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_home_abouts')) {
             return redirect('admin/index');
         }
-        return view('backend.sliders.edit', compact('slider'));
+        return view('backend.home_abouts.edit', compact('home_about'));
     }
 
 
     public function update(SliderRequest $request, HomePage $slider)
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_sliders')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_home_abouts')) {
             return redirect('admin/index');
         }
 
@@ -103,8 +103,8 @@ class HomeSliderController extends Controller
             }
 
             $filename = time() . md5(uniqid()) .'.'.$image->getClientOriginalExtension();
-            $path = ('images/home_slider/' . $filename);
-            $path_data = ('images/home_slider/' . $filename);
+            $path = ('images/home_about/' . $filename);
+            $path_data = ('images/home_about/' . $filename);
             Image::make($image->getRealPath())->save($path, 100);
             $input['image']  = $path_data;
 
@@ -114,13 +114,13 @@ class HomeSliderController extends Controller
 
         $slider->update($input);
         Alert::success('Home Slider Updated Successfully', 'Success Message');
-        return redirect()->route('admin.sliders.index');
+        return redirect()->route('admin.home_abouts.index');
     }
 
 
     public function destroy(HomePage $slider)
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_sliders')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_home_abouts')) {
             return redirect('admin/index');
         }
 
@@ -129,7 +129,7 @@ class HomeSliderController extends Controller
         }
         $slider->delete();
         Alert::success('Home Slider Deleted Successfully', 'Success Message');
-        return redirect()->route('admin.sliders.index');
+        return redirect()->route('admin.home_abouts.index');
 
     }
 
@@ -137,7 +137,7 @@ class HomeSliderController extends Controller
     public function removeImage(Request $request)
     {
 
-        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_sliders')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_home,show_home_abouts')) {
             return redirect('admin/index');
         }
 

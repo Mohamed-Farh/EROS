@@ -203,7 +203,9 @@ class EntrustSeeder extends Seeder
         $manageHome = Permission::create([ 'name' => 'manage_home', 'display_name' => 'صفحة (Homepage)', 'route' => 'home', 'module' => 'home', 'as' => 'home', 'icon' => 'fas fa-house-user', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '25', ]);
         $manageHome->parent_show = $manageHome->id;
         $manageHome->save();
-        $showSliders    = Permission::create([ 'name' => 'show_sliders',          'display_name' => 'الصور المنزلقة',       'route' => 'sliders.index',          'module' => 'home', 'as' => 'sliders.index',       'icon' => 'fas fa-conveyor-belt-alt',         'parent' => $manageHome->id, 'parent_show' => $manageHome->id, 'parent_original' => $manageHome->id,'sidebar_link' => '1', 'appear' => '1', ]);
+        $showSliders    = Permission::create([ 'name' => 'show_sliders',          'display_name' => 'الصور المنزلقة',       'route' => 'sliders.index',          'module' => 'home', 'as' => 'sliders.index',       'icon' => 'fas fa-retweet',         'parent' => $manageHome->id, 'parent_show' => $manageHome->id, 'parent_original' => $manageHome->id,'sidebar_link' => '1', 'appear' => '1', ]);
+
+        $showHomeAbout  = Permission::create([ 'name' => 'show_home_abouts',          'display_name' => 'عن المركز',       'route' => 'home_abouts.index',          'module' => 'home', 'as' => 'home_abouts.index',       'icon' => 'fas fa-address-card',         'parent' => $manageHome->id, 'parent_show' => $manageHome->id, 'parent_original' => $manageHome->id,'sidebar_link' => '1', 'appear' => '1', ]);
 
 
         //Advs
