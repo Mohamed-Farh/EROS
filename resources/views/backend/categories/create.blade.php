@@ -15,7 +15,7 @@
                     <span class="icon text-white-50">
                         <i class="fa fa-home"></i>
                     </span>
-                    <span class="text">{{__('اقسام المنتجات') }}</span>
+                    <span class="text">{{__('الأقسام') }}</span>
                 </a>
             </div>
         </div>

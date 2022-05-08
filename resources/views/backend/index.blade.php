@@ -5,7 +5,7 @@
 @section('content')
 
 
-    @php
+    {{-- @php
         $customerCount = \App\Models\User::whereHas('roles', function($query){
             $query->where('name', 'customer');
         })->count();
@@ -198,7 +198,7 @@
         </div>
         <!--end::Entry-->
     </div>
-    <!--end::Content-->
+    <!--end::Content--> --}}
 
 
 @endsection

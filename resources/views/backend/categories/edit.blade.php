@@ -15,7 +15,7 @@
                     <span class="icon text-white-50">
                         <i class="fa fa-home"></i>
                     </span>
-                    <span class="text">منتجات عامة</span>
+                    <span class="text">الأقسام</span>
                 </a>
             </div>
         </div>

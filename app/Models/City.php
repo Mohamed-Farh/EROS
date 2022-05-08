@@ -33,6 +33,25 @@ class City extends Model
         return $this->belongsTo(State::class);
     }
 
+
+
+    public function contactMessages(): HasMany
+    {
+        return $this->hasMany(ContactMessage::class);
+    }
+    public function locations(): HasMany
+    {
+        return $this->hasMany(Location::class);
+    }
+
+
+
+
+
+
+
+
+
     public function addresses(): HasMany
     {
         return $this->hasMany(UserAddress::class);

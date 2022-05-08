@@ -4,21 +4,16 @@ use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdvController;
 use App\Http\Controllers\Backend\BackendController;
-use App\Http\Controllers\Backend\BuildingCategoryController;
-use App\Http\Controllers\Backend\BuildingProductController;
-use App\Http\Controllers\Backend\CarCategoryController;
-use App\Http\Controllers\Backend\CarProductController;
-use App\Http\Controllers\Backend\CarTypeController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CityController;
+use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\EmailController;
-use App\Http\Controllers\Backend\JobCategoryController;
-use App\Http\Controllers\Backend\JobController;
-use App\Http\Controllers\Backend\MedicalDoctorController;
-use App\Http\Controllers\Backend\MedicalMedicineController;
-use App\Http\Controllers\Backend\MedicalNurseController;
+use App\Http\Controllers\Backend\HomeSliderController;
+use App\Http\Controllers\Backend\LocationController;
+use App\Http\Controllers\Backend\LogoController;
+use App\Http\Controllers\Backend\PageTitleController;
 use App\Http\Controllers\Backend\PhoneController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SocialMediaController;
@@ -60,70 +55,6 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
             /*  Country - State - City */
             Route::get('/getState',     [BackendController::class, 'get_state'    ])->name('backend.get_state');
             Route::get('/getCity',      [BackendController::class, 'get_city'    ])->name('backend.get_city');
-
-            /*-------------------------------- */
-            /*  Buildings   */
-            Route::resource('buildings',BuildingCategoryController::class);
-            Route::post('/buildings/removeImage', [BuildingCategoryController::class, 'removeImage'])->name('buildings.removeImage');
-            Route::post('/buildingsDestroyAll', [BuildingCategoryController::class,'buildingsDestroyAll'])->name('buildings.buildingsDestroyAll');
-            Route::get('buildingCategoriesUpdateStatus', [BuildingCategoryController::class,'updateStatus'])->name('buildings.buildingCategoriesUpdateStatus');
-            /*  Building Products   */
-            Route::resource('buildingProducts',BuildingProductController::class);
-            Route::post('/buildingProducts/removeImage', [BuildingProductController::class, 'removeImage'])->name('buildingProducts.removeImage');
-            Route::post('/buildingProducts/destroyAll', [BuildingProductController::class,'massDestroy'])->name('buildingProducts.massDestroy');
-            Route::get('buildingProductsUpdateStatus', [BuildingProductController::class,'updateStatus'])->name('buildingProducts.updateStatus');
-            /*  Country - State - City */
-            Route::get('/buildingProductsGetState',     [BuildingProductController::class, 'get_state'    ])->name('buildingProducts.get_state');
-            Route::get('/buildingProductsGetCity',      [BuildingProductController::class, 'get_city'    ])->name('buildingProducts.get_city');
-
-
-            /*-------------------------------- */
-            /*  Car Categories  */
-            Route::resource('carCategories',CarCategoryController::class);
-            Route::post('/carCategories/removeImage', [CarCategoryController::class, 'removeImage'])->name('carCategories.removeImage');
-            Route::post('/carCategories/destroyAll', [CarCategoryController::class,'massDestroy'])->name('carCategories.massDestroy');
-            Route::get('carCategoriesUpdateStatus', [CarCategoryController::class,'updateStatus'])->name('carCategories.updateStatus');
-            /*  Car Types  */
-            Route::resource('carTypes',CarTypeController::class);
-            Route::post('/carTypes/removeImage', [CarTypeController::class, 'removeImage'])->name('carTypes.removeImage');
-            Route::post('/carTypes/destroyAll', [CarTypeController::class,'massDestroy'])->name('carTypes.massDestroy');
-            Route::get('carTypesUpdateStatus', [CarTypeController::class,'updateStatus'])->name('carTypes.updateStatus');
-            /*  Car Products   */
-            Route::resource('carProducts',CarProductController::class);
-            Route::post('/carProducts/removeImage', [CarProductController::class, 'removeImage'])->name('carProducts.removeImage');
-            Route::post('/carProducts/destroyAll', [CarProductController::class,'massDestroy'])->name('carProducts.massDestroy');
-            Route::get('carProductsUpdateStatus', [CarProductController::class,'updateStatus'])->name('carProducts.updateStatus');
-            /*  Country - State - City */
-            Route::get('/carProductsGetState',     [CarProductController::class, 'get_state'    ])->name('carProducts.get_state');
-            Route::get('/carProductsGetCity',      [CarProductController::class, 'get_city'    ])->name('carProducts.get_city');
-
-            /*-------------------------------- */
-            /*  Medicals Doctors */
-            Route::resource('medicalDoctors',MedicalDoctorController::class);
-            Route::post('/medicalDoctors/destroyAll', [MedicalDoctorController::class,'massDestroy'])->name('medicalDoctors.massDestroy');
-            Route::get('medicalDoctorsUpdateStatus', [MedicalDoctorController::class,'updateStatus'])->name('medicalDoctors.updateStatus');
-            /*  Medicals Nurses */
-            Route::resource('medicalNurses',MedicalNurseController::class);
-            Route::post('/medicalNurses/destroyAll', [MedicalNurseController::class,'massDestroy'])->name('medicalNurses.massDestroy');
-            Route::get('medicalNursesUpdateStatus', [MedicalNurseController::class,'updateStatus'])->name('medicalNurses.updateStatus');
-            /*  Medicals Medicines */
-            Route::resource('medicalMedicines',MedicalMedicineController::class);
-            Route::post('/medicalMedicines/destroyAll', [MedicalMedicineController::class,'massDestroy'])->name('medicalMedicines.massDestroy');
-            Route::get('medicalMedicinesUpdateStatus', [MedicalNurseController::class,'updateStatus'])->name('medicalMedicines.updateStatus');
-
-
-            /*-------------------------------- */
-            /*  Job Category */
-            Route::resource('jobCategories',JobCategoryController::class);
-            Route::post('/jobCategories/destroyAll', [JobCategoryController::class,'massDestroy'])->name('jobCategories.massDestroy');
-            Route::get('jobCategoriesUpdateStatus', [JobCategoryController::class,'updateStatus'])->name('jobCategories.updateStatus');
-            /*  Job Category */
-            Route::resource('jobs',JobController::class);
-            Route::post('/jobs/destroyAll', [JobController::class,'massDestroy'])->name('jobs.massDestroy');
-            Route::get('jobsUpdateStatus', [JobController::class,'updateStatus'])->name('jobs.updateStatus');
-
-
-
 
             /*-------------------------------- */
             /*  Category   */
@@ -205,6 +136,43 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
             /*  about   */
             Route::resource('abouts'    ,AboutController::class);
             Route::post('ckeditor/upload', [AboutController::class, 'upload'])->name('ckeditor.upload');
+
+            //socials
+            Route::resource('contact-messages',ContactMessageController::class);
+            // Route::get('/get-contactUs-messages-count',   [ContactMessageController::class,'contactUsMessagesCount']);
+            Route::get('contact-messages-changeStatus', [ContactMessageController::class,'changeStatus'])->name('contact-messages.changeStatus');
+            Route::post('contact-messages-destroyAll', [ContactMessageController::class,'massDestroy'])->name('contact-messages.massDestroy');
+
+
+            //Settings
+            Route::resource('logos',LogoController::class);
+            Route::get('logos-changeStatus', [LogoController::class,'changeStatus'])->name('logos.changeStatus');
+
+            Route::resource('page-titles',PageTitleController::class);
+            Route::get('page-titles-changeStatus', [PageTitleController::class,'changeStatus'])->name('page-titles.changeStatus');
+
+            Route::resource('locations',LocationController::class);
+            Route::get('locations-changeStatus', [LocationController::class,'changeStatus'])->name('locations.changeStatus');
+
+
+
+            //Todo:: Home
+            //Slideer
+            Route::resource('sliders',HomeSliderController::class);
+            Route::post('/sliders/removeImage', [HomeSliderController::class,'removeImage'])->name('sliders.removeImage');
+            Route::get('sliders-changeStatus', [HomeSliderController::class,'changeStatus'])->name('sliders.changeStatus');
+            Route::post('sliders-destroyAll', [HomeSliderController::class,'massDestroy'])->name('sliders.massDestroy');
+
+            // Route::resource('projects',HomeProjectController::class);
+            // Route::post('/projects/removeImage', 'Backend\HomeProjectController@removeImage')->name('projects.removeImage');
+
+            // Route::resource('services',HomeServiceController::class);
+            // Route::post('/services/removeImage', 'Backend\HomeServiceController@removeImage')->name('services.removeImage');
+
+
+
+
+
 
         });
 

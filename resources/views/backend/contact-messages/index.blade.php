@@ -1,6 +1,6 @@
 @extends('layouts.auth_admin_app')
 
-@section('title', 'أنواع الخدمات (الأقسام)')
+@section('title', 'رسائل (تواصل معنا)')
 
 @section('style')
     <style>
@@ -22,41 +22,20 @@
             text-align: center;
             text-shadow: 1px 1px #b0bed9, -1px -1px #b0bed9, 1px -1px #b0bed9, -1px 1px #b0bed9;
         }
+
     </style>
 @endsection
 
 @section('content')
 
-
     <div class="container">
         <div class="row ">
             <div class="col-6 d-flex text-left">
-                <h1 class=" text-left">أنواع الخدمات (الأقسام)</h1>
-            </div>
-            <div class="col-6 d-flex justify-content-end">
-                @ability('superAdmin', 'manage_categories,create_categories')
-                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary font-weight-bolder">
-                    <span class="svg-icon svg-icon-md">
-                        <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                            height="24px" viewBox="0 0 24 24" version="1.1">
-                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <rect x="0" y="0" width="24" height="24" />
-                                <circle fill="#000000" cx="9" cy="15" r="6" />
-                                <path
-                                    d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z"
-                                    fill="#000000" opacity="0.3" />
-                            </g>
-                        </svg>
-                        <!--end::Svg Icon-->
-                    </span>
-                    عنصر جديد
-                </a>
-                @endability
+                <h1 class=" text-left">رسائل (تواصل معنا)</h1>
             </div>
         </div>
 
-        @include('backend.categories.filter')
+        @include('backend.contact-messages.filter')
 
         <div class="row">
             <div class="col-12">
@@ -64,57 +43,64 @@
                     <thead class="table-dark ">
                         <tr class="text-light">
                             <th class="text-light">No</th>
-                            <th class="text-light">الصورة</th>
                             <th class="text-light">الاسم</th>
-                            <th class="text-light">عدد الخدمات</th>
-                            <th class="text-light">القسم</th>
+                            <th class="text-light">عنوان المرسل</th>
+                            <th class="text-light">رقم الهاتف</th>
+                            <th class="text-light">عنوان الرسالة</th>
+                            <th class="text-light">الرسالة</th>
+                            <th class="text-light">تاريخ الرسالة</th>
                             <th class="text-light">الحالة</th>
                             <th class="text-light">العمليات</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $k => $category)
-                            <tr data-entry-id="{{ $category->id }}">
-                                <td></td>
+                        @foreach ($contactMessages as $k => $contactMessage)
+                            <tr data-entry-id="{{ $contactMessage->id }}">
+                                <td class="text-left">{{ $loop->index + 1 }}</td>
+                                <td class="text-center">{{ $contactMessage->name }}</td>
                                 <td class="text-center">
-                                    <img class="rounded" width="90" height="60"
-                                        src="{{ asset($category->cover) }}">
+                                    @if ($contactMessage->country_id != '')
+                                        @if ($contactMessage->city_id != '' && $contactMessage->state_id != '')
+                                                {{ $contactMessage->country->name .' - ' .$contactMessage->state->name .' - ' .$contactMessage->city->name }}
+                                        @elseif ($contactMessage->state_id != '')
+                                                {{ $contactMessage->country->name . ' - ' . $contactMessage->state->name }}
+                                        @else
+                                            {{ $contactMessage->country->name }}
+                                        @endif
+                                    @else
+                                        ---
+                                    @endif
                                 </td>
-                                <td class="text-center">{{ $category->name }}</td>
-                                <td class="text-center">{{ $category->products_count }}</td>
-                                <td class="text-center">{{ $category->parent != null ? $category->parent->name : '-' }}</td>
 
+                                <td class="text-center">{{ $contactMessage->mobile }}</td>
+                                <td class="text-center">{{ $contactMessage->subject }}</td>
+                                <td class="text-center">{{ $contactMessage->message }}</td>
+                                <td class="text-center">{{ $contactMessage->created_at }}</td>
                                 <td class="text-center">
                                     <span class="switch switch-icon">
                                         <label>
-                                            <input data-id="{{ $category->id }}" class="status-class" type="checkbox"
-                                                data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="On"
-                                                data-width="40" data-height="30" data-off="Off"
-                                                {{ $category->status == 1 ? 'checked' : '' }}>
+                                            <input data-id="{{ $contactMessage->id }}" class="status-class" type="checkbox"
+                                                data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
+                                                data-on="On" data-width="40" data-height="30" data-off="Off"
+                                                {{ $contactMessage->status == 1 ? 'checked' : '' }}>
                                             <span></span>
                                         </label>
                                     </span>
                                 </td>
                                 <td class="text-center">
                                     <div style="display: flex" class="text-center justify-content-between">
-                                        @ability('superAdmin', 'manage_categories,update_categories')
-                                            <a href="{{ route('admin.categories.edit', $category->id) }}"
-                                                class="edit btn btn-success btn-sm"><i class="fas fa-edit"></i>
-                                            </a>
-                                        @endability
-
-                                        @ability('superAdmin', 'manage_categories,delete_categories')
-                                            <a href="javascript:void(0)"
-                                                onclick="
-                                                    if (confirm('Are You Sure You Want To Delete This Record ?') )
-                                                        { document.getElementById('record_delete_{{ $category->id }}').submit(); }
-                                                    else
-                                                        { return false; }"
-                                                class="btn btn-danger"><i class="fa fa-trash"></i>
-                                            </a>
+                                        @ability('superAdmin', 'manage_contactUs_messages,show_contactUs_messages')
+                                        <a href="javascript:void(0)" onclick="
+                                                            if (confirm('Are You Sure You Want To Delete This Record ?') )
+                                                                { document.getElementById('record_delete_{{ $contactMessage->id }}').submit(); }
+                                                            else
+                                                                { return false; }" class="btn btn-danger"><i
+                                                class="fa fa-trash"></i>
+                                        </a>
                                         @endability
                                     </div>
-                                    <form action="{{ route('admin.categories.destroy', $category->id) }}" method="post" id="record_delete_{{ $category->id }}" class="d-none">
+                                    <form action="{{ route('admin.contact-messages.destroy', $contactMessage->id) }}" method="post"
+                                        id="record_delete_{{ $contactMessage->id }}" class="d-none">
                                         @csrf
                                         @method('DELETE')
                                     </form>
@@ -125,41 +111,12 @@
                 </table>
                 {{-- Pagination --}}
                 <div class="d-flex justify-content-center">
-                    {!! $categories->appends(request()->input())->links() !!}
+                    {!! $contactMessages->appends(request()->input())->links() !!}
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        $(function () {
-            $('.status-class').change(function() {
-                console.log("success");
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var cat_id = $(this).data('id');
 
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: '{{ route('admin.categories.changeStatus') }}',
-                    data: {
-                        'status': status,
-                        'cat_id': cat_id
-                    },
-                    success: function(data) {
-                        Swal.fire({
-                            title: 'Status Change Successfully',
-                            showClass: {
-                                popup: 'animate__animated animate__fadeInDown'
-                            },
-                            hideClass: {
-                                popup: 'animate__animated animate__fadeOutUp'
-                            }
-                        })
-                    }
-                });
-            })
-        });
-    </script>
 @endsection
 @section('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -170,6 +127,7 @@
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.colVis.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
     <script type="text/javascript">
         $(function() {
             let languages = {
@@ -254,7 +212,7 @@
                     {
                         className: 'btn btn-light-danger px-6 font-weight-bold',
                         text: 'Delete All',
-                        url: "{{ route('admin.categories.massDestroy') }}",
+                        url: "{{ route('admin.contact-messages.massDestroy') }}",
                         action: function(e, dt, node, config) {
 
                             var ids = $.map(dt.rows({
@@ -318,7 +276,7 @@
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: '{{ route('admin.categories.changeStatus') }}',
+                    url: '{{ route('admin.contact-messages.changeStatus') }}',
                     data: {
                         'status': status,
                         'cat_id': cat_id
