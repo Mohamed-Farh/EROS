@@ -84,7 +84,7 @@
                             <tr data-entry-id="{{ $slider->id }}">
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td class="text-center">
-                                    <img class="rounded-circle" src="{{ asset($slider->image) }}" width="60" height="60" alt="">
+                                    <img class="rounded" src="{{ asset($slider->image) }}" width="90" height="60" alt="">
                                 </td>
                                 <td class="text-center">{{ $slider->title }}</td>
                                 <td class="text-center">{{ $slider->text }}</td>

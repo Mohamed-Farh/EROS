@@ -259,8 +259,13 @@ class EntrustSeeder extends Seeder
             ##Pages Titles
             $showPages    = Permission::create([ 'name' => 'show_page_title',   'display_name' => 'نصوص العناوين',  'route' => 'page-titles.index',     'module' => 'settings',     'as' => 'page-titles.index',    'icon' => 'fas fa-heading',         'parent' => $manageSettings->id, 'parent_show' => $manageSettings->id, 'parent_original' => $manageSettings->id,'sidebar_link' => '1', 'appear' => '1', ]);
 
+            ##WorkingTimes
+            $showWorkingTimes = Permission::create([ 'name' => 'show_working_times',    'display_name' => 'ساعات العمل',    'route' => 'working_times.index',       'module' => 'settings',     'as' => 'working_times.index',      'icon' => 'fas fa-clock',  'parent' => $manageSettings->id, 'parent_show' => $manageSettings->id, 'parent_original' => $manageSettings->id,'sidebar_link' => '1', 'appear' => '1', ]);
+
             ##Locations
             $showLocations= Permission::create([ 'name' => 'show_locations',    'display_name' => 'موقع الشركة',    'route' => 'locations.index',       'module' => 'settings',     'as' => 'locations.index',      'icon' => 'fas fa-map-marker-alt',  'parent' => $manageSettings->id, 'parent_show' => $manageSettings->id, 'parent_original' => $manageSettings->id,'sidebar_link' => '1', 'appear' => '1', ]);
+
+
 
 
 

@@ -18,6 +18,7 @@ class CreateContactMessagesTable extends Migration
             $table->string('name')->nullable();
             $table->string('company')->nullable();
             $table->string('mobile')->nullable();
+            $table->string('email')->nullable();
             $table->string('subject')->nullable();
             $table->text('message')->nullable();
             $table->foreignId('country_id')->nullable()->constrained()->cascadeOnDelete();

@@ -40,12 +40,11 @@ class State extends Model
         return $this->hasMany(City::class);
     }
 
-
-
     public function contactMessages(): HasMany
     {
         return $this->hasMany(ContactMessage::class);
     }
+    
     public function locations(): HasMany
     {
         return $this->hasMany(Location::class);

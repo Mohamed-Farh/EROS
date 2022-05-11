@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(ProductCouponSeeder::class);
         // $this->call(ProductReviewSeeder::class);
         $this->call(SocialMediaSeeder::class);
-        $this->call(AboutSeeder::class);
+        // $this->call(AboutSeeder::class);
         // $this->call(CountrySeeder::class);
     }
 }

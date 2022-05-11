@@ -45,6 +45,7 @@
                             <th class="text-light">No</th>
                             <th class="text-light">الاسم</th>
                             <th class="text-light">عنوان المرسل</th>
+                            <th class="text-light">البريد الالكتروني</th>
                             <th class="text-light">رقم الهاتف</th>
                             <th class="text-light">عنوان الرسالة</th>
                             <th class="text-light">الرسالة</th>
@@ -72,6 +73,7 @@
                                     @endif
                                 </td>
 
+                                <td class="text-center">{{ $contactMessage->email }}</td>
                                 <td class="text-center">{{ $contactMessage->mobile }}</td>
                                 <td class="text-center">{{ $contactMessage->subject }}</td>
                                 <td class="text-center">{{ $contactMessage->message }}</td>

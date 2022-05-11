@@ -27,15 +27,8 @@
                         <div class="col-9">
                             <label for="page">الصفحة</label>
                             <select name="page" class="form-control">
-                                <option value="Home Services" {{ old('page', $pageTitle->page ) == "Home Services" ? 'selected' : null }}>Home Services</option>
-                                <option value="Top Projects" {{ old('page', $pageTitle->page ) == "Top Projects" ? 'selected' : null }}>Top Projects</option>
-                                <option value="Technologies We Provide" {{ old('page', $pageTitle->page ) == "Technologies We Provide" ? 'selected' : null }}>Technologies We Provide</option>
-                                <option value="Deltana Careers" {{ old('page', $pageTitle->page ) == "Deltana Careers" ? 'selected' : null }}>Deltana Careers</option>
-                                <option value="Process" {{ old('page', $pageTitle->page ) == "Process" ? 'selected' : null }}>Process</option>
-                                <option value="Our Projects" {{ old('page', $pageTitle->page ) == "Our Projects" ? 'selected' : null }}>Our Projects</option>
-                                <option value="Why Deltana?" {{ old('page', $pageTitle->page ) == "Why Deltana?" ? 'selected' : null }}>Why Deltana?</option>
-                                <option value="Contact Us" {{ old('page', $pageTitle->page ) == "Contact Us" ? 'selected' : null }}>Contact Us</option>
-                                <option value="Contact Us Footer" {{ old('page', $pageTitle->page ) == "Contact Us Footer" ? 'selected' : null }}>Contact Us Footer</option>
+                                <option value="الرئيسية (الخدمات)" {{ old('page', $pageTitle->page) == "الرئيسية (الخدمات)" ? 'selected' : null }}>الرئيسية (الخدمات)</option>
+                                <option value="الرئيسية (مقتراحاتك)" {{ old('page', $pageTitle->page) == "الرئيسية (مقتراحاتك)" ? 'selected' : null }}>الرئيسية (مقتراحاتك)</option>
                                 <option value="Footer" {{ old('page', $pageTitle->page ) == "Footer" ? 'selected' : null }}>Footer</option>
                             </select>
                             @error('page')<span class="text-danger">{{ $message }}</span>@enderror

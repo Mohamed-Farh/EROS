@@ -36,7 +36,7 @@ class LoginController extends Controller
     {
         if(auth()->user()->roles()->first()->allowed_route != '')
         {
-            Alert::success('تم تسجيل الدخول بنجاح', 'بوابتك');
+            Alert::success('تم تسجيل الدخول بنجاح', 'EROS');
             return $this->redirectTo = auth()->user()->roles()->first()->allowed_route . '/index';
         }
     }

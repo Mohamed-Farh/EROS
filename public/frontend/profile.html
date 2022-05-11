@@ -1,95 +1,273 @@
 <html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport"content="width=device-width,initial-scale=1,shrink-to-fit=no"/>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+        <title>
+            eros
+        </title>
+        
+        <link rel="stylesheet"href='fontawesome/css/all.min.css'>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link href="css/style.css" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div class="content">
+        <!-- start nav -->
+        <div class="navbar-sec">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="index.html"><img src="images/Capture.PNG"/></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="index.html">الرئيسية <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="about.html">من نخن</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">الخدمات</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="booking.html">حجز موعد</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="contact.html">اتصل بنا</a>
+                      </li>
+                      
+                   
+                    
+                  </ul>
+                 <div class="row">
+                     <div class="col">
+                         <a href="#" class="nav-link" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">تسجيل الدخول</a>
 
-    <title>
-        بوابتك
-    </title>
+                     </div>
+                 </div>
+                </div>
+              </nav>
+        </div>
 
-    <link rel="stylesheet" href='fontawesome/css/all.min.css'>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/style.css" rel="stylesheet">
+        <!-- end nav -->
+        <a href="#" class="float1" target="_blank">
+            <i class="fab fa-whatsapp my-float1"></i>
+            </a>
+         <!--start profile info  -->
+         <div class="profile-info py-4">
+             <div class="container">
+                <div class="upload-image1">
+                    <form >
+                         <div class="upload-profile-pic py-4">
+                            <img class="profile-pic" src=""/>
+                            <div class="p-image">
+                                <i class="fa fa-camera upload-button"></i>
+                                 <input class="file-upload" type="file" accept="image/*"/>
+                            </div>
+                             
 
-</head>
+                         </div>   
+                    </form>
+                </div>
+                <div class="form-sec-55 text-center">
+                    <form>
+                        <input type="text"placeholder="الاسم الكامل"/>
+                        <input type="phone"placeholder="رقم الموبايل"/>
+                        <input type="email"placeholder="البريد الالكتروني"/>
+                        <input type="password"placeholder="كلمة المرور"/>
+                    </form>
+                </div>
+                <div class="btn-send text-center">
+                    <button class="edit-btn">تعديل</button>
+                </div>
+                <div class="tow-btns text-center">
+                    <div class="row">
+                        <div class="col">
+                            <button onclick="myFunction1()" class="reviews-buttons">الصالح</button>
 
-<body>
-    <div class="bawabtouk-sec">
-        <div class="container">
-            <section class="top-nav">
-                <div class="navbar-sec">
-                    <div class="hamburger-menu">
-                        <div class="logo-link">
-                            <p><a href="index.html">بوابتك</a></p>
                         </div>
-                        <input id="menu__toggle" type="checkbox" />
-                        <label class="menu__btn" for="menu__toggle">
-                            <span></span>
-                        </label>
+                        <div class="col">
+                            <button name="answer" value="Show Div" onclick="myFunction2()" class="reviews-buttons">المنتهي</button>
 
-                        <ul class="menu__box text-right">
-                            <li><a class="menu__item" href="index.html">الرئيسية</a></li>
-                            <li><a class="menu__item" href="profile.html">الحساب الشخصي</a></li>
-                            <li><a class="menu__item" href="addads.html">اضافة </a></li>
-                            <li><a class="menu__item" href="favourite.html">المفضلة</a></li>
-                            <li><a class="menu__item" href="notifications.html">الاشعارات</a></li>
-                            <li><a class="menu__item" href="setting.html">الاعدادات</a></li>
-                            <li><a class="menu__item" href="about.html">حول التطبيق</a></li>
+                        </div>
 
-
-                        </ul>
                     </div>
+
                 </div>
-            </section>
-            <div class="contain-sec py-4">
-                <div class="container-jobs py-2 ">
-                    <div class="image-profile py-3 text-center">
-                        <img src="images/94991421-black-happy-girls-icon-vector-woman-icon-illustration.jpg" />
-                    </div>
-                    <div class="personal-info text-center py-2">
-                        <p>Aya Al Saleh</p>
-                        <p>aya.sa@gmail.com</p>
-                        <p>0999646238</p>
-                        <p>Damascus<i class="fas fa-map-marker-alt"></i></p>
-                    </div>
-                    <div class="exchange-btn profile-btns-edit text-center mt-2 ">
-
-                        <button onclick="location.href='setting.html'">تعديل</button>
-                        <button class="my-history-btn">اعلاناتي</button>
-                    </div>
-                </div>
-                <div class="my-all-hestory" style="display: none;">
-                    <div class="hestory-sec">
-                        <div class="des-sec-1 notification-sec  hest-1 " id="close-div-1">
-                            <button id='close ' class="close-ads-sec1 toggle-btn toggle-btn-1 hest-1-btn">
+                <!--  -->
+                <div class=" reviews-div " >
+                    <div  class="container-msg-1 mb-3 mt-3  " id="myDIV1" style="display: none;">
+                        <div class="des-sec-1 notification-sec  menu-1" id="close-div-1 " >
+                            <button id='close ' class="close-ads-sec1 toggle-btn toggle-btn-1" >
                                 <i class="fas fa-times"></i>
                             </button>
-                            <div class="notification-containt py-2 m-2">
+                            <div class="notification-containt">
                                 <div class="media">
-                                    <img src="images/download.jpg" class="image-products-1" alt="...">
+                                    <img src="images/istockphoto-1287464276-612x612.jpg" class="image-products-1" alt="...">
                                     <div class="media-body">
-                                        <h5 class="mt-0"><a href="#">هونداي</a></h5>
-                                        <p class="contact-details"><a href="#"><i
-                                                    class="fab fa-whatsapp"></i>0999646238</a></p>
+                                      <h5 class="mt-0">شعر</h5>
+                                      <p class="contact-details">22/2/2022</p>
                                     </div>
-                                </div>
-
+                                  </div>
+    
                             </div>
                         </div>
-
+                        <div class="des-sec-1 notification-sec  menu-2" id="close-div-2" >
+                            <button id='close' class="close-ads-sec1 toggle-btn toggle-btn-2">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="notification-containt">
+                                <div class="media">
+                                    <img src="images/istockphoto-187793692-612x612.jpg" class="image-products-1" alt="...">
+                                    <div class="media-body">
+                                      <h5 class="mt-0">ليزر</h5>
+                                      <p class="contact-details">22/2/2022</p>
+                                    </div>
+                                  </div>
+    
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
+                <div class="description-div" >
+                    <div class="container-msg-1 mb-3 mt-3  text-center " id="myDIV2"  style="display:none;" class="answer_list">
+                        <div class=" notification-sec  menu-3" id="close-div-3 " >
+                            <button id='close ' class="close-ads-sec1 toggle-btn toggle-btn-3" >
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="notification-containt">
+                                <div class="media">
+                                    <img src="images/istockphoto-1191012856-612x612.jpg" class="image-products-1" alt="...">
+                                    <div class="media-body">
+                                      <h5 class="mt-0">بشرة</h5>
+                                      <p class="contact-details">22/2/2022</p>
+                                    </div>
+                                  </div>
+    
+                            </div>
+                        </div>
+                        <div class=" notification-sec  menu-4" id="close-div-4" >
+                            <button id='close' class="close-ads-sec1 toggle-btn toggle-btn-4">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="notification-containt">
+                                <div class="media">
+                                    <img src="images/istockphoto-1308940433-612x612.jpg" class="image-products-1" alt="...">
+                                    <div class="media-body">
+                                      <h5 class="mt-0">تغذية</h5>
+                                      <p class="contact-details">22/2/2022</p>
+                                    </div>
+                                  </div>
+    
+                            </div>
+                            
+                        </div>
+                    </div>
+  
+                </div>  
+                <!--  -->
+
+             </div>
+
+         </div>
+         <!--end profile info  -->
+         <!-- start footer -->
+         <div class="footer py-4 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                       <div class="row">
+                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h5>روابط مختصرة</h5>
+                            <ul>
+                                <li><a href="about.html"> من نحن</a></li>
+                                <li><a href="services.html"> الخدمات</a></li>
+                                <li><a href="contact.html"> اتصل بنا</a></li>
+                            </ul>
+
+                           </div>
+                           
+                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h5>التواصل</h5>
+                            <ul>
+                                <li><a href="#"><i class="fas fa-envelope"></i>eros@gmail.com</a></li>
+                                <li><a href="#"> <i class="fas fa-phone-alt"></i>0111278928</a></li>
+                                <li><a href="#"> <i class="fas fa-phone-alt"></i>0111278928</a></li>
+                            </ul>
+
+                           </div>
+
+                       </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <img src="images/Capture.PNG"/>
+                        <p>
+                            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد 
+                        </p>
+                        <a href="#" class="social"><i class="fab fa-facebook"></i></a><a href="#"class="social"><i class="fab fa-instagram"></i></a><a href="#"class="social"><i class="fab fa-whatsapp"></i></a>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="line-2 mt-2 mb-2">
             </div>
         </div>
+        <!-- end footer -->
+        <!-- start copyright -->
+        <div class="copyright ">
+            <div class="container">
+                <p>Eros Copyright 2022 - All Rights Reserved</p>
+            </div>
+        </div>
+        <!-- end copyright -->
     </div>
-
-
-    <script src="js/popper.min.js"></script>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/bootstrap.js"></script>
-</body>
-
-</html>
+    <!-- start modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content text-center">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <h4 class="modal-title">مركز Eros</h4>
+          <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،</p>
+           <form>
+             <input type="email"placeholder="البريد الالكتروني"/>
+             <input type="password"placeholder="كلمة السر"/>
+           </form>
+           <div class="button-sec py-3">
+            <button onclick="window.location.href='#'">تسجيل الدخول</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- end modal -->
+    <script>
+        AOS.init();
+      </script>
+         
+          <script src="js/popper.min.js"></script>
+          <script src="js/jquery-3.6.0.min.js"></script>
+          <script src="js/js.js"></script>
+          <script src="js/bootstrap.js"></script>
+          
+  
+      </body>
+  </html>
+      

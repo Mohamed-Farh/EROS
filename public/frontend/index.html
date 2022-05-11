@@ -5,206 +5,388 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
 
     <title>
-        بوابتك
+        eros
     </title>
 
     <link rel="stylesheet" href='fontawesome/css/all.min.css'>
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
-    <div class="bawabtouk-sec">
-        <div class="container">
-            <section class="top-nav">
-                <div class="navbar-sec">
-                    <div class="hamburger-menu">
-                        <div class="logo-link">
-                            <p><a href="index.html">بوابتك</a></p>
+    <div class="content">
+        <!-- start nav -->
+        <div class="navbar-sec">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="index.html"><img src="images/Capture.PNG" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">الرئيسية <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">من نخن</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">الخدمات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="booking.html">حجز موعد</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">اتصل بنا</a>
+                        </li>
+
+
+
+                    </ul>
+                    <div class="row">
+                        <div class="col">
+                            <a href="#" class="nav-link" class="btn btn-info btn-lg" data-toggle="modal"
+                                data-target="#myModal">تسجيل الدخول</a>
+
                         </div>
-                        <input id="menu__toggle" type="checkbox" />
-                        <label class="menu__btn" for="menu__toggle">
-                            <span></span>
-                        </label>
-
-                        <ul class="menu__box text-right">
-                            <li><a class="menu__item" href="index.html">الرئيسية</a></li>
-                            <li><a class="menu__item" href="profile.html">الحساب الشخصي</a></li>
-                            <li><a class="menu__item" href="addads.html">اضافة </a></li>
-                            <li><a class="menu__item" href="favourite.html">المفضلة</a></li>
-                            <li><a class="menu__item" href="notifications.html">الاشعارات</a></li>
-                            <li><a class="menu__item" href="setting.html">الاعدادات</a></li>
-                            <li><a class="menu__item" href="about.html">حول التطبيق</a></li>
-
-
-                        </ul>
                     </div>
                 </div>
-            </section>
-            <div class="contain-sec py-4 ">
-                <div class="row py-2 start-containt-search">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <form>
+            </nav>
+        </div>
 
-                            <select class="search-select">
-                                <option selected hidden>المحافظة</option>
-                                <option>المنصورة</option>
-                                <option>القاهرة</option>
-                            </select>
-                            <select>
-                                <option selected hidden>المدينة</option>
-                                <option>الدقهلية</option>
-                                <option>طلخا</option>
-                            </select>
-                            <button class="search-btn"> بحث</button>
-                        </form>
+        <!-- end nav -->
+        <a href="#" class="float1" target="_blank">
+            <i class="fab fa-whatsapp my-float1"></i>
+        </a>
+
+        <!-- start slider -->
+        <div class="slider">
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/istockphoto-1370852326-612x612.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>مركز Eros</h5>
+                            <p>كل ما يخص جمالك ستجدينه عندنا</p>
+                            <button onclick="window.location.href='#'" class="btn btn-info btn-lg" data-toggle="modal"
+                                data-target="#myModal" type="button">سجل الان</button>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/istockphoto-1191012856-612x612.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>مركز Eros</h5>
+                            <p>كل ما يخص جمالك ستجدينه عندنا</p>
+                            <button onclick="window.location.href='#'" class="btn btn-info btn-lg" data-toggle="modal"
+                                data-target="#myModal" type="button">سجل الان</button>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/istockphoto-1137004846-612x612.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>مركز Eros</h5>
+                            <p>كل ما يخص جمالك ستجدينه عندنا</p>
+                            <button onclick="window.location.href='#'" class="btn btn-info btn-lg" data-toggle="modal"
+                                data-target="#myModal" type="button">سجل الان</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- end slider -->
+
+        <!-- start about -->
+        <div class="about py-4 text-center">
+            <div class="container">
+                <h5>عن المركز</h5>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+                        <p data-aos="flip-right" data-aos-easing="linear" data-aos-duration="1500">هذا النص هو مثال لنص
+                            يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد
+                            مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+                            إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد،
+                            النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه
+                            الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.
+                        </p>
+                        <p data-aos="flip-right" data-aos-easing="linear" data-aos-duration="1500">هذا النص هو مثال لنص
+                            يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد
+                            مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+                            إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد،
+                            النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه
+                            الخصوص، حيث يحتاج العميل
+                        </p>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+                        <img src="images/istockphoto-1304651359-612x612.jpg" data-aos="flip-left"
+                            data-aos-easing="linear" data-aos-duration="1500" />
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+                        <img src="images/istockphoto-921843968-612x612.jpg" data-aos="flip-right"
+                            data-aos-easing="linear" data-aos-duration="1500" />
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+                        <p data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500">هذا النص هو مثال لنص
+                            يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد
+                            مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+                            إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد،
+                            النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه
+                            الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.
+                        </p>
+                        <p data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500">هذا النص هو مثال لنص
+                            يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد
+                            مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+                            إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد،
+                            النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه
+                            الخصوص، حيث يحتاج العميل
+                        </p>
 
                     </div>
 
                 </div>
-                <div class="row slider-sec py-2 text-center">
-                    <div class="col-sx-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="slideshow-container">
+                <button onclick="window.location.href='about.html'">المزيد</button>
 
-                            <div class="mySlides fade">
-                                <div class="numbertext">1 / 3</div>
-                                <img src="images/car.jpg">
+            </div>
 
+        </div>
+        <!-- end about -->
+
+        <!-- start services -->
+        <div class="services py-4 text-center">
+            <div class="container">
+                <h5>الخدمات</h5>
+                <div class="row" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                        <div class="image-services">
+                            <img src="images/istockphoto-921843968-612x612.jpg" alt="Avatar" class="image"
+                                style="width:100%">
+                            <div class="middle">
+                                <div class="text"><a href="servicesdetails.html">تنظيف بشرة</a></div>
                             </div>
-
-                            <div class="mySlides fade">
-                                <div class="numbertext">2 / 3</div>
-                                <img src="images/maxresdefault.jpg">
-
-                            </div>
-
-                            <div class="mySlides fade">
-                                <div class="numbertext">3 / 3</div>
-                                <img src="images/images.jpg">
-
-                            </div>
-
-                        </div>
-                        <br>
-
-                        <div style="text-align:center">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
                         </div>
 
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                        <div class="image-services">
+                            <img src="images/istockphoto-1287464276-612x612.jpg" alt="Avatar" class="image"
+                                style="width:100%">
+                            <div class="middle">
+                                <div class="text"><a href="servicesdetails.html">معالجة شعر</a></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                        <div class="image-services">
+                            <img src="images/istockphoto-864573868-612x612.jpg" alt="Avatar" class="image"
+                                style="width:100%">
+                            <div class="middle">
+                                <div class="text"><a href="servicesdetails.html">جراحة</a></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                        <div class="image-services">
+                            <img src="images/istockphoto-187793692-612x612.jpg" alt="Avatar" class="image"
+                                style="width:100%">
+                            <div class="middle">
+                                <div class="text"><a href="servicesdetails.html">ليزر</a></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                        <div class="image-services">
+                            <img src="images/istockphoto-1218270481-612x612.jpg" alt="Avatar" class="image"
+                                style="width:100%">
+                            <div class="middle">
+                                <div class="text"><a href="servicesdetails.html">خدمات جلدية</a></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                        <div class="image-services">
+                            <img src="images/istockphoto-1308940433-612x612.jpg" alt="Avatar" class="image"
+                                style="width:100%">
+                            <div class="middle">
+                                <div class="text"><a href="servicesdetails.html">تغذية</a></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                        <div class="image-services">
+                            <img src="images/istockphoto-1135508809-612x612.jpg" alt="Avatar" class="image"
+                                style="width:100%">
+                            <div class="middle">
+                                <div class="text"><a href="servicesdetails.html">مساج احترافي</a></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                        <div class="image-services">
+                            <img src="images/istockphoto-1366228031-612x612.jpg" alt="Avatar" class="image"
+                                style="width:100%">
+                            <div class="middle">
+                                <div class="text"><a href="servicesdetails.html">بوتوكس</a></div>
+                            </div>
+                        </div>
 
                     </div>
 
                 </div>
-                <div class="row  card-sec py-2 mr-1 ml-1">
-                    <div class="col-6 mt-2">
-                        <div class="card text-center" style="width: 100%;">
-                            <a href="buildings.html"><img src="images/2544087.png" class="card-img-top" alt="..."></a>
-                            <h5 class="card-title text-center"><a href="buildings.html">عقارات</a></h5>
+                <button onclick="window.location.href='services.html'">المزيد</button>
+
+            </div>
+
+        </div>
+        <!-- end services -->
+
+        <!-- start booking -->
+        <div class="booking py-4 text-right">
+            <div class="container">
+                <h5>مقتراحاتك</h5>
+                <div class="row booking-row" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-2">
+                        <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+                        <div class="contact-info py-3">
+                            <form>
+                                <input type="text" placeholder="الاسم الكامل">
+                                <input type="tel" placeholder="رقم الموبايل">
+                                <textarea placeholder="ألرسالة"></textarea>
+                                <div class="button-sec py-3 text-center ">
+                                    <button onclick="window.location.href='#'">ارسال</button>
+
+                                </div>
+                            </form>
+
 
                         </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-2">
+                        <img src="images/istockphoto-1064019482-612x612.jpg" />
 
                     </div>
-                    <div class="col-6 mt-2">
-                        <div class="card text-center" style="width: 100%;">
-                            <a href="cars.html"><img src="images/3774278.png" class="card-img-top" alt="..."></a>
-                            <h5 class="card-title text-center"><a href="cars.html">عربيات</a></h5>
-
-                        </div>
-
-                    </div>
-                    <div class="col-6 mt-2">
-                        <div class="card text-center" style="width: 100%;">
-                            <a href="weather.html"><img src="images/578116.png" class="card-img-top" alt="..."></a>
-                            <h5 class="card-title text-center"><a href="weather.html">طقس</a></h5>
-
-                        </div>
-
-                    </div>
-                    <div class="col-6 mt-2">
-                        <div class="card text-center" style="width: 100%;">
-                            <a href="medicalservices.html"><img src="images/3004458.png" class="card-img-top"
-                                    alt="..."></a>
-                            <h5 class="card-title text-center"><a href="medicalservices.html">خدمات طبية</a></h5>
-
-                        </div>
-
-                    </div>
-                    <div class="col-6 mt-2">
-                        <div class="card text-center" style="width: 100%;">
-                            <a href="Islamic prayer times.html"><img src="images/3858880.png" class="card-img-top"
-                                    alt="..."></a>
-                            <h5 class="card-title text-center"><a href="Islamic prayer times.html">مواعيد الصلاة</a>
-                            </h5>
-
-                        </div>
-
-                    </div>
-                    <div class="col-6 mt-2">
-                        <div class="card text-center" style="width: 100%;">
-                            <a href="job.html"><img src="images/4664514.png" class="card-img-top" alt="..."></a>
-                            <h5 class="card-title text-center"><a href="job.html">فرص عمل</a></h5>
-
-                        </div>
-
-                    </div>
-                    <div class="col-6 mt-2">
-                        <div class="card text-center" style="width: 100%;">
-                            <a href="exchange.html"><img src="images/2953423.png" class="card-img-top" alt="..."></a>
-                            <h5 class="card-title text-center"><a href="exchange.html">صرف عملة</a></h5>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-6 mt-2">
-                        <div class="card text-center" style="width: 100%;">
-                            <a href="products.html"><img src="images/5895213.png" class="card-img-top" alt="..."></a>
-                            <h5 class="card-title text-center"><a href="products.html">منتجات</a></h5>
-
-                        </div>
-
-                    </div>
-
 
                 </div>
 
             </div>
+
+        </div>
+        <!-- end booking -->
+
+        <!-- start footer -->
+        <div class="footer py-4 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <h5>روابط مختصرة</h5>
+                                <ul>
+                                    <li><a href="about.html"> من نحن</a></li>
+                                    <li><a href="services.html"> الخدمات</a></li>
+                                    <li><a href="contact.html"> اتصل بنا</a></li>
+                                </ul>
+
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <h5>التواصل</h5>
+                                <ul>
+                                    <li><a href="#"><i class="fas fa-envelope"></i>eros@gmail.com</a></li>
+                                    <li><a href="#"> <i class="fas fa-phone-alt"></i>0111278928</a></li>
+                                    <li><a href="#"> <i class="fas fa-phone-alt"></i>0111278928</a></li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <img src="images/Capture.PNG" />
+                        <p>
+                            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص
+                            العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف
+                            التى يولدها التطبيق.
+                            إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد
+                        </p>
+                        <a href="#" class="social"><i class="fab fa-facebook"></i></a><a href="#" class="social"><i
+                                class="fab fa-instagram"></i></a><a href="#" class="social"><i
+                                class="fab fa-whatsapp"></i></a>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="line-2 mt-2 mb-2">
+            </div>
+        </div>
+        <!-- end footer -->
+        <!-- start copyright -->
+        <div class="copyright ">
+            <div class="container">
+                <p>Eros Copyright 2022 - All Rights Reserved</p>
+            </div>
+        </div>
+        <!-- end copyright -->
+    </div>
+    
+    <!-- start modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title">مركز Eros</h4>
+                    <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى،
+                    </p>
+                    <form>
+                        <input type="email" placeholder="البريد الالكتروني" />
+                        <input type="password" placeholder="كلمة السر" />
+                    </form>
+                    <div class="button-sec py-3">
+                        <button onclick="window.location.href='#'">تسجيل الدخول</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
-    <!-- start slider -->
+    <!-- end modal -->
     <script>
-        var slideIndex = 0;
-        showSlides();
-
-        function showSlides() {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("dot");
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1 }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-            setTimeout(showSlides, 3000); // Change image every 2 seconds
-        }
+        AOS.init();
     </script>
-    <!-- end slider -->
-
-
 
     <script src="js/popper.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/bootstrap.js"></script>
+
+
 </body>
 
 </html>

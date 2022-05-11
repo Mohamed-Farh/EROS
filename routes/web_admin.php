@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\SocialMediaController;
 use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\WorkingTimeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -136,7 +137,9 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
 
             /*  about   */
             Route::resource('abouts'    ,AboutController::class);
-            Route::post('ckeditor/upload', [AboutController::class, 'upload'])->name('ckeditor.upload');
+            Route::post('/abouts/removeImage', [AboutController::class,'removeImage'])->name('abouts.removeImage');
+            Route::get('abouts-changeStatus', [AboutController::class,'changeStatus'])->name('abouts.changeStatus');
+            Route::post('abouts-destroyAll', [AboutController::class,'massDestroy'])->name('abouts.massDestroy');
 
             //socials
             Route::resource('contact-messages',ContactMessageController::class);
@@ -154,6 +157,9 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
 
             Route::resource('locations',LocationController::class);
             Route::get('locations-changeStatus', [LocationController::class,'changeStatus'])->name('locations.changeStatus');
+
+            Route::resource('working_times',WorkingTimeController::class);
+            Route::get('working_times-changeStatus', [WorkingTimeController::class,'changeStatus'])->name('working_times.changeStatus');
 
 
 

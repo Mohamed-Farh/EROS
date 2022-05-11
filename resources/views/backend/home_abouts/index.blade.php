@@ -82,7 +82,7 @@
                             <tr data-entry-id="{{ $home_about->id }}">
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td class="text-center">
-                                    <img class="rounded-circle" src="{{ asset($home_about->image) }}" width="60" height="60" alt="">
+                                    <img class="rounded" width="90" height="60" src="{{ asset($home_about->image) }}" alt="">
                                 </td>
                                 <td class="text-center">{{ $home_about->title }}</td>
                                 <td class="text-center">{{ $home_about->text }}</td>

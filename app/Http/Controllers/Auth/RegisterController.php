@@ -38,7 +38,7 @@ class RegisterController extends Controller
 
     public function redirectTo()
     {
-        Alert::success('تم انشاء حسابكم بنجاح', 'بوابتك');
+        Alert::success('تم انشاء حسابكم بنجاح', 'EROS');
         return $this->redirectTo = RouteServiceProvider::HOME;
     }
 

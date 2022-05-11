@@ -75,8 +75,9 @@ class CategoryController extends Controller
         if ($image = $request->file('cover')) {
             $filename = Str::slug($request->name).'.'.$image->getClientOriginalExtension();   //علشان تكون اسم الصورة نفس اسم الكاتيجوري
             $path = ('images/category/' . $filename);
-            Image::make($image->getRealPath())->resize(500, null, function ($constraint) {
+            Image::make($image->getRealPath())->resize(800, 450, function ($constraint) {
                 $constraint->aspectRatio();
+                $constraint->upsize();
             })->save($path, 100);
             $input['cover']  = $path;
         }
@@ -146,9 +147,9 @@ class CategoryController extends Controller
 
             $filename = Str::slug($request->name).'.'.$image->getClientOriginalExtension();   //علشان تكون اسم الصورة نفس اسم الكاتيجوري
             $path = ('images/category/' . $filename);
-            Image::make($image->getRealPath())->resize(500, null, function ($constraint) {
-                $constraint->aspectRatio();  //لتنسيق العرض مع الطول
-            })->save($path, 100);  //الجودة و درجة الوضوح تكون 100%
+            Image::make($image->getRealPath())->resize(null, 450, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($path, 100);
             $input['cover']  = $path;
         }
 

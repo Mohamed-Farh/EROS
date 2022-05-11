@@ -58,7 +58,9 @@ class HomeAboutController extends Controller
 
             // Image::make($image->getRealPath())->resize(800, 550)->save($path, 100);
             // $input['image']  = $path_data;
-            Image::make($image->getRealPath())->save($path, 100);
+            Image::make($image->getRealPath())->fit(800, 600, function ($constraint) {
+                $constraint->upsize();
+            })->save($path, 100);
             $input['image']  = $path_data;
         }
 
@@ -83,12 +85,11 @@ class HomeAboutController extends Controller
     }
 
 
-    public function update(SliderRequest $request, HomePage $slider)
+    public function update(SliderRequest $request, HomePage $home_about)
     {
         if (!\auth()->user()->ability('superAdmin', 'manage_home,show_home_abouts')) {
             return redirect('admin/index');
         }
-
         $input['title']     = $request->title;
         $input['text']      = $request->text;
         $input['button_text']     = $request->button_text;
@@ -98,21 +99,22 @@ class HomeAboutController extends Controller
 
         if ($image = $request->file('image')) {
 
-            if ($slider->image != null && is_file($slider->image)) {
-                unlink($slider->image);
+            if ($home_about->image != null && is_file($home_about->image)) {
+                unlink($home_about->image);
             }
 
             $filename = time() . md5(uniqid()) .'.'.$image->getClientOriginalExtension();
             $path = ('images/home_about/' . $filename);
-            $path_data = ('images/home_about/' . $filename);
-            Image::make($image->getRealPath())->save($path, 100);
-            $input['image']  = $path_data;
+            Image::make($image->getRealPath())->fit(800, 600, function ($constraint) {
+                $constraint->upsize();
+            })->save($path, 100);
+            $input['image']  = $path;
 
             // Image::make($image->getRealPath())->resize(800, 550)->save($path, 100);
             // $input['image']  = $path_data;
         }
 
-        $slider->update($input);
+        $home_about->update($input);
         Alert::success('Home Slider Updated Successfully', 'Success Message');
         return redirect()->route('admin.home_abouts.index');
     }
