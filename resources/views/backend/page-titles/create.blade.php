@@ -31,6 +31,7 @@
                                 <option value="الرئيسية (الخدمات)" {{ old('page') == "الرئيسية (الخدمات)" ? 'selected' : null }}>الرئيسية (الخدمات)</option>
                                 <option value="الرئيسية (مقتراحاتك)" {{ old('page') == "الرئيسية (مقتراحاتك)" ? 'selected' : null }}>الرئيسية (مقتراحاتك)</option>
                                 <option value="الخدمات" {{ old('page') == "الخدمات" ? 'selected' : null }}>الخدمات</option>
+                                <option value="حجز موعد" {{ old('page') == "حجز موعد" ? 'selected' : null }}>حجز موعد</option>
                                 <option value="اتصل بنا" {{ old('page') == "اتصل بنا" ? 'selected' : null }}>اتصل بنا</option>
                                 <option value="Footer" {{ old('page') == "Footer" ? 'selected' : null }}>Footer</option>
                             </select>

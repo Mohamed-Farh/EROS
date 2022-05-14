@@ -30,6 +30,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/frontState',     [FrontendController::class, 'frontState'    ])->name('frontend.frontState');
 Route::get('/frontCity',      [FrontendController::class, 'frontCity'    ])->name('frontend.frontCity');
 
+/* products */
+Route::any('/getProducts/{id}',      [FrontendController::class, 'getProducts']);
 
 
 
@@ -40,6 +42,9 @@ Route::get('/categories/{category}',   [FrontendController::class, 'categoryDeta
 Route::post('send-contact-message',     [FrontendController::class, 'sendContactMessage'    ])->name('frontend.send-contact-message');
 Route::get('/contact-us',    [FrontendController::class, 'contactUs'])->name('frontend.contact-us');
 Route::get('/about-us',    [FrontendController::class, 'aboutUs'])->name('frontend.about-us');
+Route::get('/booking',    [FrontendController::class, 'booking'])->name('frontend.booking');
+Route::post('booking-booking',     [FrontendController::class, 'bookingBooking'    ])->name('frontend.booking-booking');
+Route::get('/profile',    [FrontendController::class, 'profile'])->name('frontend.profile');
 
 
 

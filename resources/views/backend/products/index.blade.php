@@ -1,6 +1,6 @@
 @extends('layouts.auth_admin_app')
 
-@section('title', 'منتجات عامة')
+@section('title', 'الخدمات')
 
 @section('style')
     <style>
@@ -31,7 +31,7 @@
     <div class="container">
         <div class="row ">
             <div class="col-6 d-flex text-left">
-                <h1 class=" text-left">منتجات عامة</h1>
+                <h1 class=" text-left">الخدمات</h1>
             </div>
             <div class="col-6 d-flex justify-content-end">
                 @ability('superAdmin', 'manage_products,create_products')
@@ -86,10 +86,6 @@
                                     @else
                                         <img class="rounded" src="{{ asset('assets/no_image.png')}}" width="60" height="90" alt="{{ $product->name }}">
                                     @endif
-                                </td>
-                                <td class="text-center">
-                                    {{ $product->user->first_name .' '. $product->user->last_name }}
-                                    <p class="text-gray-400">{{ $product->user->email }}<br>{{ $product->user->mobile }}</p>
                                 </td>
                                 <td class="text-center">{{ $product->name }}</td>
                                 <td class="text-center">{{ $product->category->name }}</td>

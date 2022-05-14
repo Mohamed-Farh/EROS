@@ -1,7 +1,16 @@
 <!-- start nav -->
 <div class="navbar-sec">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ route('frontend.index') }}"><img src="{{ asset('frontend/images/Capture.PNG') }}" /></a>
+        <a class="navbar-brand" href="{{ route('frontend.index') }}">
+            @php
+                $logo = \App\Models\Logo::whereStatus(1)->first();
+            @endphp
+            @if ($logo)
+                <img src="{{ asset($logo->logo) }}" />
+            @else
+                <img src="{{ asset('frontend/images/Capture.PNG') }}" />
+            @endif
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -20,7 +29,7 @@
                     <a class="nav-link" href="{{ route('frontend.categories') }}">الخدمات</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="booking.html">حجز موعد</a>
+                    <a class="nav-link" href="{{ route('frontend.booking') }}">حجز موعد</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('frontend.contact-us') }}">اتصل بنا</a>

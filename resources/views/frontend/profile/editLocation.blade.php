@@ -6,9 +6,29 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .user-info {
+            width: 70%;
+            height: 42px;
+            border: 1px solid #ebebeb;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px #dddddd;
+            outline: none;
+            margin: 0px 0px 15px;
+        }
+        label {
+            margin: 14px 0px 0px 0px;
+        }
+        @media (min-width:320px) and (max-width:767px){
+            .user-info{
+                width: 100%;
+                margin: 10px 0px;
+            }
+        }
+    </style>
 
-    <div class="contain-sec py-4">
-        <div class="container-jobs py-4 ">
+    <div class="profile-info py-4">
+        <div class="container">
             <div class="upload-image1">
                 <div class="upload-profile-pic py-4">
                     <img class="profile-pic" src="{{ asset(auth()->user()->user_image) }}" />
@@ -111,9 +131,9 @@
                                 </span>
                             @enderror
                         </div>
-
-
-                        <button type="submit" class="save-btn">حفظ</button>
+                    </div>
+                    <div class="btn-send text-center">
+                        <button type="submit" class="edit-btn">حفظ</button>
                     </div>
                 </div>
             </form>
@@ -164,7 +184,7 @@
 
             function locationStates() {
                 let countryIdVal = $('#country_id').val() != null ? $('#country_id').val() : '{{ old('country_id', $userAddress->country_id) }}';
-                $.get("{{ route('frontend.frontGetState') }}", {
+                $.get("{{ route('frontend.frontState') }}", {
                     country_id: countryIdVal
                 }, function(data) { //هعمل فانكشن واديها قيمه الدوله كمتغير فيها
                     $('option', $('#location_state_id')).remove(); //هحذف كل الاوبشن اللي موجدود في السيلكت
@@ -183,7 +203,7 @@
             function locationCities() {
                 let stateIdVal = $('#location_state_id').val() != null ? $('#location_state_id').val() :
                     '{{ old('state_id', $userAddress->state_id) }}'; //عملت متغير يحمل قيمة رقم الدوله و في حالة بعت البيانات في الفورم و في حاجه غلط يرجع القيم اللي كنت مختارها قبل ما الفورم تتبعت
-                $.get("{{ route('frontend.frontGetCity') }}", {
+                $.get("{{ route('frontend.frontCity') }}", {
                     state_id: stateIdVal
                 }, function(data) { //هعمل فانكشن واديها قيمه الدوله كمتغير فيها
                     $('option', $('#location_city_id')).remove(); //هحذف كل الاوبشن اللي موجدود في السيلكت

@@ -18,6 +18,7 @@
             box-shadow: 0px 0px 10px #dddddd;
             font-size: 0.6rem!important;
         }
+
     </style>
 
 
@@ -114,31 +115,47 @@
             <h5>عن المركز</h5>
             @foreach ($homeAbouts as $homeAbout)
                 @if (($loop->index + 1) % 2 != 0)
-                    <div class="row">
+                    <div class="row" style="margin-right: 0px;">
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
                             <h6 class="text-right" data-aos="flip-right" data-aos-easing="ease-out-cubic" style="color: #f9b519"
                                 data-aos-duration="2000">{{ $homeAbout->title }}
                             </h6>
                             <br>
-                            <p data-aos="flip-right" data-aos-easing="linear" data-aos-duration="1500">{{ $homeAbout->text }}</p>
+                            <p style="text-align: justify" data-aos="flip-right" data-aos-easing="linear" data-aos-duration="1500">{{ $homeAbout->text }}</p>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
-                            <img src="{{ asset($homeAbout->image) }}" data-aos="flip-left" data-aos-easing="linear"
-                                data-aos-duration="1500" />
-                        </div>
+                        @if ($homeAbout->video != '')
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3"
+                                style="background: white;border-radius: 13px; border-radius: 15px; border: 5px solid #f9b519;" data-aos="flip-right">
+                                <iframe width="100%" height="90%" src="{{ $homeAbout->video }}"
+                                        frameborder="0" allowfullscreen style="padding-top: 20px;" class="videoAbout"></iframe>
+                            </div>
+                        @else
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+                                <img src="{{ asset($homeAbout->image) }}" data-aos="flip-left" data-aos-easing="linear"
+                                    data-aos-duration="1500" />
+                            </div>
+                        @endif
                     </div>
                 @else
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
-                            <img src="{{ asset($homeAbout->image) }}" data-aos="flip-left" data-aos-easing="linear"
-                                data-aos-duration="1500" />
-                        </div>
+                    <div class="row" style="margin-right: 0px;">
+                        @if ($homeAbout->video != '')
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3"
+                                style="background: white;border-radius: 13px; border-radius: 15px; border: 5px solid #f9b519;" data-aos="flip-right">
+                                <iframe width="100%" height="90%" src="{{ $homeAbout->video }}"
+                                        frameborder="0" allowfullscreen style="padding-top: 20px;"></iframe>
+                            </div>
+                        @else
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
+                                <img src="{{ asset($homeAbout->image) }}" data-aos="flip-left" data-aos-easing="linear"
+                                    data-aos-duration="1500" />
+                            </div>
+                        @endif
                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-3">
                             <h6 class="text-right" data-aos="flip-right" data-aos-easing="ease-out-cubic" style="color: #f9b519"
                                 data-aos-duration="2000">{{ $homeAbout->title }}
                             </h6>
                             <br>
-                            <p data-aos="flip-right" data-aos-easing="linear" data-aos-duration="1500">{{ $homeAbout->text }}</p>
+                            <p style="text-align: justify" data-aos="flip-right" data-aos-easing="linear" data-aos-duration="1500">{{ $homeAbout->text }}</p>
                         </div>
                     </div>
                 @endif

@@ -186,6 +186,17 @@ class EntrustSeeder extends Seeder
         $updateProducts  = Permission::create([ 'name' => 'update_products',        'display_name' => 'تعديل خدمة',   'route' => 'products.edit',           'module' => 'products', 'as' => 'products.edit',        'icon' => null,                  'parent' => $manageProducts->id, 'parent_show' => $manageProducts->id, 'parent_original' => $manageProducts->id,'sidebar_link' => '1', 'appear' => '0', ]);
         $destroyProducts = Permission::create([ 'name' => 'delete_products',        'display_name' => 'حذف خدمة',     'route' => 'products.destroy',        'module' => 'products', 'as' => 'products.destroy',     'icon' => null,                  'parent' => $manageProducts->id, 'parent_show' => $manageProducts->id, 'parent_original' => $manageProducts->id,'sidebar_link' => '1', 'appear' => '0', ]);
 
+        //Bookings
+        $manageBookings = Permission::create([ 'name' => 'manage_bookings', 'display_name' => 'الحجوزات', 'route' => 'bookings', 'module' => 'bookings', 'as' => 'bookings.index', 'icon' => 'fas fa-shopping-bag', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '15', ]);
+        $manageBookings->parent_show = $manageBookings->id;
+        $manageBookings->save();
+        $showBookings    = Permission::create([ 'name' => 'show_bookings',          'display_name' => 'الحجوزات',       'route' => 'bookings.index',          'module' => 'bookings', 'as' => 'bookings.index',       'icon' => 'fas fa-shopping-bag',          'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '1', ]);
+        $createPBookings  = Permission::create([ 'name' => 'create_bookings',        'display_name' => 'انشاء حجز',   'route' => 'bookings.create',         'module' => 'bookings', 'as' => 'bookings.create',      'icon' => null,                  'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '0', ]);
+        $updatePBookings  = Permission::create([ 'name' => 'update_bookings',        'display_name' => 'تعديل حجز',   'route' => 'bookings.edit',           'module' => 'bookings', 'as' => 'bookings.edit',        'icon' => null,                  'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '0', ]);
+        $destroyBookings = Permission::create([ 'name' => 'delete_bookings',        'display_name' => 'حذف حجز',     'route' => 'bookings.destroy',        'module' => 'bookings', 'as' => 'bookings.destroy',     'icon' => null,                  'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '0', ]);
+            //Finished
+            $showFinishedBookings    = Permission::create([ 'name' => 'show_finished_bookings',          'display_name' => 'ارشيف الحجوزات',       'route' => 'bookings.finished',          'module' => 'bookings', 'as' => 'bookings.finished',       'icon' => 'fas fa-file-archive',          'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '1', ]);
+
 
 
 
@@ -209,10 +220,10 @@ class EntrustSeeder extends Seeder
 
 
         //Advs
-        $manageAdvs = Permission::create([ 'name' => 'manage_advs', 'display_name' => 'الاعلانات', 'route' => 'advs', 'module' => 'advs', 'as' => 'advs.index', 'icon' => 'fas fa-ad', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '25', ]);
-        $manageAdvs->parent_show = $manageAdvs->id;
-        $manageAdvs->save();
-        $showAdvs    = Permission::create([ 'name' => 'show_advs',          'display_name' => 'الاعلانات',       'route' => 'advs.index',          'module' => 'advs', 'as' => 'advs.index',       'icon' => 'fas fa-ad',         'parent' => $manageAdvs->id, 'parent_show' => $manageAdvs->id, 'parent_original' => $manageAdvs->id,'sidebar_link' => '1', 'appear' => '1', ]);
+        // $manageAdvs = Permission::create([ 'name' => 'manage_advs', 'display_name' => 'الاعلانات', 'route' => 'advs', 'module' => 'advs', 'as' => 'advs.index', 'icon' => 'fas fa-ad', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '25', ]);
+        // $manageAdvs->parent_show = $manageAdvs->id;
+        // $manageAdvs->save();
+        // $showAdvs    = Permission::create([ 'name' => 'show_advs',          'display_name' => 'الاعلانات',       'route' => 'advs.index',          'module' => 'advs', 'as' => 'advs.index',       'icon' => 'fas fa-ad',         'parent' => $manageAdvs->id, 'parent_show' => $manageAdvs->id, 'parent_original' => $manageAdvs->id,'sidebar_link' => '1', 'appear' => '1', ]);
 
 
         //Countries

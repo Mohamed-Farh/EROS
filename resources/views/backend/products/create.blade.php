@@ -1,6 +1,6 @@
 @extends('layouts.auth_admin_app')
 
-@section('title', 'انشاء منتج')
+@section('title', 'انشاء الخدمات')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('backend/vendor/select2/css/select2.min.css') }}">
@@ -12,14 +12,14 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
             <div class="col-6">
-                <h6   h6 class="m-0 font-weight-bold text-primary">انشاء منتج</h6>
+                <h6   h6 class="m-0 font-weight-bold text-primary">انشاء الخدمات</h6>
             </div>
             <div class="col-6 text-right">
                 <a href="{{ route('admin.products.index') }}" class="btn btn-primary">
                     <span class="icon text-white-50">
                         <i class="fa fa-home"></i>
                     </span>
-                    <span class="text">منتجات عامة</span>
+                    <span class="text">الخدمات</span>
                 </a>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="form-group">
-                            <label for="name">اسم المنتج</label>
+                            <label for="name">اسم خدمة</label>
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control">
                             @error('name')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
@@ -52,52 +52,37 @@
                     </div>
 
                     <div class="col-4">
-                        <label for="status">حالة المنتج</label>
+                        <label for="status">حالة خدمة</label>
                         <select name="status" class="form-control">
                             <option value="1" {{ old('status') == 1 ? 'selected' : null }}>نشط</option>
                             <option value="0" {{ old('status') == 0 ? 'selected' : null }}>غير نشط</option>
                         </select>
                         @error('status')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="user_id">اسم العميل | صاحب الاعلان</label>
-                            <input type="text" name="customer_name" id="customer_name"
-                                value="{{ old('customer_name', request()->input('customer_name')) }}"
-                                placeholder="Start Customer Search" class="form-control typeahead"
-                                data-provide="typeahead" autocomplete="off">
-                            <input type="hidden" name="user_id" id="user_id" class="form-control"
-                                value="{{ old('user_id', request()->input('user_id')) }}" readonly required>
-                            @error('user_id')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col-12">
-                        <label for="description">وصف المنتج</label>
+                        <label for="description">وصف خدمة</label>
                         <textarea name="description" rows="5" class="form-control">{!! old('description') !!}</textarea>
                         @error('description')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                 </div>
 
                 <div class="row mt-6">
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="quantity">الكمية</label>
                         <input type="number" name="quantity" value="{{ old('quantity') }}" class="form-control" min="0">
                         @error('quantity')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="price">السعر</label>
                         <input type="number" name="price" value="{{ old('price') }}" class="form-control"  min="0">
                         @error('price')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="featured">مميز</label>
                         <select name="featured" class="form-control">
                             <option value="1" {{ old('featured') == 1 ? 'selected' : null }}>نعم</option>
@@ -105,20 +90,7 @@
                         </select>
                         @error('featured')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>
-                </div>
-
-                <div class="row mt-6">
-                    <div class="col-4">
-                        <label for="start_date">تاريخ الانتاج</label>
-                        <input type="date" name="start_date" value="{{ old('start_date') }}" class="form-control"  min="0">
-                        @error('start_date')<span class="text-danger">{{ $message }}</span>@enderror
-                    </div>
-                    <div class="col-4">
-                        <label for="end_date">تاريخ الانتهاء</label>
-                        <input type="date" name="end_date" value="{{ old('end_date') }}" class="form-control"  min="0">
-                        @error('end_date')<span class="text-danger">{{ $message }}</span>@enderror
-                    </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="phone">رقم الهاتف</label>
                         <input type="text" name="phone" value="{{ old('phone') }}" class="form-control"  min="0">
                         @error('phone')<span class="text-danger">{{ $message }}</span>@enderror
@@ -162,7 +134,7 @@
                 <div class="row pt-4 mt-4">
                     <div class="col-12">
                         <div class="form-group file-loading">
-                            <label for="images">صور المنتج</label>
+                            <label for="images">صور خدمة</label>
                             <input type="file" name="images[]" id="product_images" class="file-input-overview" multiple="multiple">
                             <span class="form-text text-muted">Image Width Should be (500px) X (500px)</span>
                             @error('images')<span class="text-danger">{{ $message }}</span>@enderror
@@ -171,7 +143,7 @@
                 </div>
 
                 <div class="form-group pt-4 text-center">
-                    <button type="submit" name="submit" class="btn btn-primary">اضافة المنتج</button>
+                    <button type="submit" name="submit" class="btn btn-primary">اضافة خدمة</button>
                 </div>
             </form>
         </div>

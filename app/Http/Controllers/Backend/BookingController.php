@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\ProductRequest;
+use App\Models\Booking;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class ProductController extends Controller
+class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,11 +23,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_products,show_products')) {
+        Carbon::setLocale('ar');
+
+        if (!\auth()->user()->ability('superAdmin', 'manage_bookings,show_bookings')) {
             return redirect('admin/index');
         }
 
-        $products = Product::with('category', 'tags', 'firstMedia')
+        $bookings = Booking::with('category', 'product')
 
         ->when(\request()->keyword !=null, function($query){
             $query->search(\request()->keyword);
@@ -35,9 +39,35 @@ class ProductController extends Controller
         })
         ->orderBy(\request()->sort_by ?? 'id' ,  \request()->order_by ?? 'desc')
 
+        ->whereStatus('0')
+
         ->paginate(\request()->limit_by ?? 10);
 
-        return view('backend.products.index', compact('products'));
+
+        return view('backend.bookings.index', compact('bookings'));
+    }
+
+    public function finished()
+    {
+        if (!\auth()->user()->ability('superAdmin', 'manage_bookings,show_bookings')) {
+            return redirect('admin/index');
+        }
+
+        $bookings = Booking::with('category', 'product')
+
+        ->when(\request()->keyword !=null, function($query){
+            $query->search(\request()->keyword);
+        })
+        ->when(\request()->status !=null, function($query){
+            $query->whereStatus(\request()->status);
+        })
+        ->orderBy(\request()->sort_by ?? 'id' ,  \request()->order_by ?? 'desc')
+
+        ->whereStatus('1')
+
+        ->paginate(\request()->limit_by ?? 10);
+
+        return view('backend.bookings.index', compact('bookings'));
     }
 
     /**
@@ -47,14 +77,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_products,create_products')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_bookings,create_bookings')) {
             return redirect('admin/index');
         }
 
         $categories = Category::whereStatus(1)->get(['id', 'name']);
         $tags       = Tag::whereStatus(1)->get(['id', 'name']);
 
-        return view('backend.products.create', compact('categories', 'tags'));
+        return view('backend.bookings.create', compact('categories', 'tags'));
     }
 
     /**
@@ -63,35 +93,35 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(BookingRequest $request)
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_products,create_products')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_bookings,create_bookings')) {
             return redirect('admin/index');
         }
 
-        // $input['user_id']       = $request->user_id;
+        $input['user_id']       = $request->user_id;
         $input['name']          = $request->name;
         $input['description']   = $request->description;
         $input['quantity']      = $request->quantity;
         $input['price']         = $request->price;
         $input['category_id']   = $request->category_id;
         $input['featured']      = $request->featured;
-        // $input['start_date']    = $request->start_date;
-        // $input['end_date']      = $request->end_date;
+        $input['start_date']    = $request->start_date;
+        $input['end_date']      = $request->end_date;
         $input['phone']         = $request->phone;
         $input['country_id']    = $request->country_id;
         $input['state_id']      = $request->state_id;
         $input['city_id']       = $request->city_id;
         $input['status']        = $request->status;
 
-        $product = Product::create($input); //قم بانشاء كاتيجوري جديدة وخد المتغيرات بتاعتك من المتغير اللي اسمه انبوت
+        $booking = Booking::create($input); //قم بانشاء كاتيجوري جديدة وخد المتغيرات بتاعتك من المتغير اللي اسمه انبوت
 
-        $product->tags()->attach($request->tags); //لان هذا علاقة مني تو مني
+        $booking->tags()->attach($request->tags); //لان هذا علاقة مني تو مني
 
         if ($request->images && count($request->images) > 0) {
             $i = 1;
             foreach ($request->images as $file) {
-                $filename = $product->slug.'-'.time().'-'.$i.'.'.$file->getClientOriginalExtension();
+                $filename = $booking->slug.'-'.time().'-'.$i.'.'.$file->getClientOriginalExtension();
                 $file_size = $file->getSize();
                 $file_type = $file->getMimeType();
                 $path = ('images/product/' . $filename);
@@ -99,7 +129,7 @@ class ProductController extends Controller
                     $constraint->aspectRatio();
                 })->save($path, 100);
 
-                $product->media()->create([
+                $booking->media()->create([
                     'file_name'     => $path,
                     'file_size'     => $file_size,
                     'file_type'     => $file_type,
@@ -110,8 +140,8 @@ class ProductController extends Controller
             }
         }
 
-        Alert::success('Product Created Successfully', 'Success Message');
-        return redirect()->route('admin.products.index');
+        Alert::success('Booking Created Successfully', 'Success Message');
+        return redirect()->route('admin.bookings.index');
     }
 
     /**
@@ -120,13 +150,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Booking $booking)
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_products,display_products')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_bookings,display_bookings')) {
             return redirect('admin/index');
         }
 
-        return view('backend.products.show', compact('product'));
+        return view('backend.bookings.show', compact('product'));
     }
 
     /**
@@ -135,16 +165,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Booking $booking)
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_products,update_products')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_bookings,update_bookings')) {
             return redirect('admin/index');
         }
 
         $categories = Category::whereStatus(1)->get(['id', 'name']);
         $tags       = Tag::whereStatus(1)->get(['id', 'name']);
 
-        return view('backend.products.edit', compact('categories', 'tags', 'product'));
+        return view('backend.bookings.edit', compact('categories', 'tags', 'product'));
     }
 
     /**
@@ -154,9 +184,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(BookingRequest $request, Booking $booking)
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_products,update_products')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_bookings,update_bookings')) {
             return redirect('admin/index');
         }
 
@@ -166,22 +196,22 @@ class ProductController extends Controller
         $input['price']         = $request->price;
         $input['category_id']   = $request->category_id;
         $input['featured']      = $request->featured;
-        // $input['start_date']    = $request->start_date;
-        // $input['end_date']      = $request->end_date;
+        $input['start_date']    = $request->start_date;
+        $input['end_date']      = $request->end_date;
         $input['phone']         = $request->phone;
         $input['country_id']    = $request->country_id;
         $input['state_id']      = $request->state_id;
         $input['city_id']       = $request->city_id;
         $input['status']        = $request->status;
 
-        $product->update($input);
+        $booking->update($input);
 
-        $product->tags()->sync($request->tags);
+        $booking->tags()->sync($request->tags);
 
         if ($request->images && count($request->images) > 0) {
-            $i = $product->media()->count() + 1;
+            $i = $booking->media()->count() + 1;
             foreach ($request->images as $file) {
-                $filename = $product->slug.'-'.time().'-'.$i.'.'.$file->getClientOriginalExtension();
+                $filename = $booking->slug.'-'.time().'-'.$i.'.'.$file->getClientOriginalExtension();
                 $file_size = $file->getSize();
                 $file_type = $file->getMimeType();
                 $path = ('images/product/' . $filename);
@@ -189,7 +219,7 @@ class ProductController extends Controller
                     $constraint->aspectRatio();
                 })->save($path, 100);
 
-                $product->media()->create([
+                $booking->media()->create([
                     'file_name'     => $path,
                     'file_size'     => $file_size,
                     'file_type'     => $file_type,
@@ -199,9 +229,9 @@ class ProductController extends Controller
                 $i++;
             }
         }
-        Alert::success('Product Updated Successfully', 'Success Message');
+        Alert::success('Booking Updated Successfully', 'Success Message');
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.bookings.index');
     }
 
     /**
@@ -210,61 +240,27 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Booking $booking)
     {
-        if (!\auth()->user()->ability('superAdmin', 'manage_products,delete_products')) {
+        if (!\auth()->user()->ability('superAdmin', 'manage_bookings,delete_bookings')) {
             return redirect('admin/index');
         }
 
-        if($product->media()->count() > 0 )
-        {
-            foreach ($product->media as $media)
-            {
-                if (File::exists($media->file_name)) {
-                    unlink($media->file_name);
-                }
-                $media->delete();
-            }
-        }
-        $product->delete();
+        $booking->delete();
 
-        Alert::success('Product Deleted Successfully', 'Success Message');
+        Alert::success('Booking Deleted Successfully', 'Success Message');
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.bookings.index');
 
     }
 
-
-
-    public function removeImage(Request $request)
-    {
-        if (!\auth()->user()->ability('superAdmin', 'manage_products,delete_products')) {
-            return redirect('admin/index');
-        }
-
-        $product = Product::findOrFail($request->product_id);
-        $image   = $product->media()->whereId($request->image_id)->first();
-        if ($image) {
-            if (File::exists($image->file_name)) {
-                unlink($image->file_name);
-            }
-        }
-        $image->delete();
-        return true;
-    }
 
     public function massDestroy(Request $request)
     {
         $ids = $request->ids;
         foreach ($ids as $id) {
-            $product = Product::findorfail($id);
-            $image   = $product->media()->whereId($request->image_id)->first();
-            if ($image) {
-                if (File::exists($image->file_name)) {
-                    unlink($image->file_name);
-                }
-            }
-            $product->delete();
+            $booking = Booking::findorfail($id);
+            $booking->delete();
         }
         return response()->json([
             'error' => false,
@@ -274,9 +270,9 @@ class ProductController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $product = Product::find($request->cat_id);
-        $product->status = $request->status;
-        $product->save();
+        $booking = Booking::find($request->cat_id);
+        $booking->status = $request->status;
+        $booking->save();
         return response()->json(['success'=>'Status Change Successfully.']);
     }
 }

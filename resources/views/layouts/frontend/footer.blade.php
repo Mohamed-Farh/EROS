@@ -54,7 +54,17 @@ $locations = \App\Models\Location::whereStatus(1)
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                <img src="{{ asset('frontend/images/Capture.PNG') }}" />
+                @php
+                    $logo = \App\Models\Logo::whereStatus(1)->first();
+                @endphp
+                @if ($logo)
+                    <img src="{{ asset($logo->logo) }}" />
+                @else
+                    <img src="{{ asset('frontend/images/Capture.PNG') }}" />
+                @endif
+
+
+
                 @php
                     $pageTitles = \App\Models\PageTitle::whereStatus(1)
                         ->wherePage('Footer')

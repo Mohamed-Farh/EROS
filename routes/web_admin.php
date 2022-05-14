@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdvController;
 use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\BookingController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\ContactMessageController;
@@ -76,6 +77,15 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
             Route::post('products-destroyAll', [ProductController::class,'massDestroy'])->name('products.massDestroy');
             Route::get('products-changeStatus', [ProductController::class,'changeStatus'])->name('products.changeStatus');
 
+            /*  Products   */
+            Route::resource('bookings',BookingController::class);
+            Route::get('bookings-finished', [BookingController::class, 'finished'])->name('bookings.finished');
+
+            Route::post('bookings-removeImage', [BookingController::class, 'removeImage'])->name('bookings.removeImage');
+            Route::post('bookings-destroyAll', [BookingController::class,'massDestroy'])->name('bookings.massDestroy');
+            Route::get('bookings-changeStatus', [BookingController::class,'changeStatus'])->name('bookings.changeStatus');
+
+
             /*-------------------------------- */
             /*  Admins   */
             Route::resource('admins'    ,AdminController::class);
@@ -143,7 +153,6 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
 
             //socials
             Route::resource('contact-messages',ContactMessageController::class);
-            // Route::get('/get-contactUs-messages-count',   [ContactMessageController::class,'contactUsMessagesCount']);
             Route::get('contact-messages-changeStatus', [ContactMessageController::class,'changeStatus'])->name('contact-messages.changeStatus');
             Route::post('contact-messages-destroyAll', [ContactMessageController::class,'massDestroy'])->name('contact-messages.massDestroy');
 
@@ -175,16 +184,6 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
             Route::post('/home_abouts/removeImage', [HomeAboutController::class,'removeImage'])->name('home_abouts.removeImage');
             Route::get('home_abouts-changeStatus', [HomeAboutController::class,'changeStatus'])->name('home_abouts.changeStatus');
             Route::post('home_abouts-destroyAll', [HomeAboutController::class,'massDestroy'])->name('home_abouts.massDestroy');
-
-            // Route::resource('projects',HomeProjectController::class);
-            // Route::post('/projects/removeImage', 'Backend\HomeProjectController@removeImage')->name('projects.removeImage');
-
-            // Route::resource('services',HomeServiceController::class);
-            // Route::post('/services/removeImage', 'Backend\HomeServiceController@removeImage')->name('services.removeImage');
-
-
-
-
 
 
         });

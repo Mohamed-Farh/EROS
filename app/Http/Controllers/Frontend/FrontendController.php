@@ -10,6 +10,7 @@ use App\Http\Requests\Backend\MedicalRequest;
 use App\Http\Requests\Backend\ProductRequest;
 use App\Models\About;
 use App\Models\Adv;
+use App\Models\Booking;
 use App\Models\BuildingCategory;
 use App\Models\BuildingProduct;
 use App\Models\CarCategory;
@@ -18,6 +19,7 @@ use App\Models\CarType;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\ContactMessage;
+use App\Models\Country;
 use App\Models\HomePage;
 use App\Models\Job;
 use App\Models\JobCategory;
@@ -28,6 +30,7 @@ use App\Models\Product;
 use App\Models\State;
 use App\Models\User;
 use App\Models\UserAddress;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -47,6 +50,12 @@ class FrontendController extends Controller
     {
         $cities = City::whereStateId($request->state_id)->whereStatus(true)->get(['id', 'name'])->toArray();
         return response()->json($cities);
+    }
+
+    public function getProducts($id)
+    {
+        $products = Product::where('category_id', $id)->pluck("name", "id");
+        return $products;
     }
     ######################################## Main ###################################################
     public function index()
@@ -98,6 +107,36 @@ class FrontendController extends Controller
         $abouts = About::whereStatus(1)->latest()->get();
         return view('frontend.aboutUs', compact('abouts'));
     }
+    public function booking()
+    {
+        $categories = Category::get(['id', 'name']);
+        return view('frontend.booking', compact('categories'));
+    }
+    public function bookingBooking(Request $request)
+    {
+        try {
+            $input['user_id']       = $request->user_id != '' ? $request->user_id : '';
+            $input['name']          = $request->name;
+            $input['mobile']        = $request->mobile;
+            $input['email']         = $request->email;
+            $input['category_id']   = $request->category_id;
+            $input['product_id']    = $request->product_id;
+            $input['subject']       = $request->subject;
+            $input['message']       = $request->message;
+            $input['country_id']    = $request->country_id;
+            $input['state_id']      = $request->state_id;
+            $input['city_id']       = $request->city_id;
+            $input['day']           = $request->day;
+            $input['start']         = $request->start;
+            $Booking = Booking::create($input);
+            Alert::success('Success', 'Your Booking Sent Successfully');
+            return redirect()->back();
+        }catch (\Exception $e) {
+            Alert::error('Error Message', 'SomeThing Wrong, Please Try Again');
+            return redirect()->back();
+        }
+    }
+
 
 
     #####
@@ -110,10 +149,18 @@ class FrontendController extends Controller
     ##################################################################################################
     ################################################ Pages ###########################################
     ##################################################################################################
+    // public function profile()
+    // {
+    //     $userAddress = UserAddress::whereUserId(auth()->user()->id)->first();
+    //     return view('frontend.profile.profile', compact('userAddress'));
+    // }
     public function profile()
     {
+        Carbon::setLocale('ar');
+        $bookings = Booking::whereStatus(0)->whereUserId(auth()->user()->id)->get();
+        $finishedBookings = Booking::whereStatus(1)->whereUserId(auth()->user()->id)->get();
         $userAddress = UserAddress::whereUserId(auth()->user()->id)->first();
-        return view('frontend.profile.profile', compact('userAddress'));
+        return view('frontend.profile.profile', compact('bookings', 'userAddress', 'finishedBookings'));
     }
     #######
     public function editProfile(Request $request)
@@ -147,7 +194,7 @@ class FrontendController extends Controller
         }
 
         $customer->update($input); //قم بانشاء كاتيجوري جديدة وخد المتغيرات بتاعتك من المتغير اللي اسمه انبوت
-        Alert::success('تم تعديل بيانات حسابكم بنجاح', 'بوابتك');
+        Alert::success('تم تعديل بيانات حسابكم بنجاح', 'EROS');
         return view('frontend.profile.profile');
         // return redirect()->route('frontend.updateProfile');
     }
@@ -170,8 +217,7 @@ class FrontendController extends Controller
         $input['po_box']        = $request->po_box;
         $userAddress->update($input);
 
-        Alert::success('تم تعديل موقعكم بنجاح', 'بوابتك');
-        // return view('frontend.profile.profile');
+        Alert::success('تم تعديل موقعكم بنجاح', 'EROS');
         return view('frontend.profile.profile', compact('userAddress'));
     }
 

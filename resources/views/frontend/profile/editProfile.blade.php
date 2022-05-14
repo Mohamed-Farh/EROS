@@ -7,11 +7,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <style>
+        .input-booking {
+            width: 70%;
+            height: 42px;
+            border: 1px solid #ebebeb;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px #dddddd;
+            outline: none;
+            margin: 0px 0px 15px;
+        }
+        label {
+            margin: 14px 0px 0px 0px;
+        }
+        @media (min-width:320px) and (max-width:767px){
+            .input-booking{
+                width: 100%;
+                margin: 10px 0px;
+            }
+        }
+    </style>
 
 
-
-    <div class="contain-sec py-4">
-        <div class="container-jobs py-4 ">
+    <div class="profile-info py-4">
+        <div class="container py-4 ">
             <form method="POST" action="{{ route('frontend.updateProfile', ['user_id' => auth()->user()->id]) }}"
                 enctype="multipart/form-data">
                 @csrf
@@ -25,12 +44,12 @@
                     </div>
                 </div>
 
-                <div class="personal-info py-2 text-center">
+                <div  class="text-center">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="text" name="first_name" value="{{ auth()->user()->first_name }}"
                                 placeholder="الاسم الاول"
-                                class="user-info pr-3 @error('first_name') is-invalid @enderror" />
+                                class="input-booking pr-3 @error('first_name') is-invalid @enderror" />
                             @error('first_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -41,7 +60,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="text" name="last_name" value="{{ auth()->user()->last_name }}"
                                 placeholder="الاسم الاخير"
-                                class="user-info pr-3 @error('last_name') is-invalid @enderror" />
+                                class="input-booking pr-3 @error('last_name') is-invalid @enderror" />
                             @error('last_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -51,7 +70,7 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="text" name="username" value="{{ auth()->user()->username }}"
-                                placeholder="اسم المستخدم" class="user-info pr-3 @error('username') is-invalid @enderror" />
+                                placeholder="اسم المستخدم" class="input-booking pr-3 @error('username') is-invalid @enderror" />
                             @error('username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -61,7 +80,7 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="text" name="mobile" value="{{ auth()->user()->mobile }}"
-                                placeholder="رقم الهاتف" class="user-info pr-3 @error('mobile') is-invalid @enderror" />
+                                placeholder="رقم الهاتف" class="input-booking pr-3 @error('mobile') is-invalid @enderror" />
                             @error('mobile')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -72,7 +91,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="email" name="email" value="{{ auth()->user()->email }}"
                                 placeholder="البريد الالكتروني"
-                                class="user-info pr-3 @error('email') is-invalid @enderror" />
+                                class="input-booking pr-3 @error('email') is-invalid @enderror" />
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -82,7 +101,7 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="password" name="password" placeholder="كلمة المرور"
-                                class="user-info pr-3 @error('password') is-invalid @enderror" />
+                                class="input-booking pr-3 @error('password') is-invalid @enderror" />
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -90,19 +109,19 @@
                             @enderror
                         </div>
 
-
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input id="password-confirm" name="password_confirmation" type="password"
                                 placeholder="تأكيد كلمة المرور"
-                                class="user-info pr-3 @error('password_confirmation') is-invalid @enderror" />
+                                class="input-booking pr-3 @error('password_confirmation') is-invalid @enderror" />
                             @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-
-                        <button type="submit" class="save-btn">حفظ</button>
+                    </div>
+                    <div class="btn-send text-center">
+                        <button type="submit" class="edit-btn">حفظ</button>
                     </div>
                 </div>
             </form>
@@ -188,7 +207,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="text" name="first_name" value="{{ auth()->user()->first_name }}"
                                 placeholder="الاسم الاول"
-                                class="user-info pr-3 @error('first_name') is-invalid @enderror" />
+                                class="input-booking pr-3 @error('first_name') is-invalid @enderror" />
                             @error('first_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -199,7 +218,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="text" name="last_name" value="{{ auth()->user()->last_name }}"
                                 placeholder="الاسم الاخير"
-                                class="user-info pr-3 @error('last_name') is-invalid @enderror" />
+                                class="input-booking pr-3 @error('last_name') is-invalid @enderror" />
                             @error('last_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -209,7 +228,7 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="text" name="username" name="first_name" value="{{ auth()->user()->username }}"
-                                placeholder="اسم المستخدم" class="user-info pr-3 @error('username') is-invalid @enderror" />
+                                placeholder="اسم المستخدم" class="input-booking pr-3 @error('username') is-invalid @enderror" />
                             @error('username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -220,7 +239,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="email" name="email" value="{{ auth()->user()->email }}"
                                 placeholder="البريد الالكتروني"
-                                class="user-info pr-3 @error('email') is-invalid @enderror" />
+                                class="input-booking pr-3 @error('email') is-invalid @enderror" />
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -230,7 +249,7 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input type="password" name="password" placeholder="كلمة المرور"
-                                class="user-info pr-3 @error('password') is-invalid @enderror" />
+                                class="input-booking pr-3 @error('password') is-invalid @enderror" />
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -242,7 +261,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <input id="password-confirm" name="password_confirmation" type="password"
                                 placeholder="تأكيد كلمة المرور"
-                                class="user-info pr-3 @error('password_confirmation') is-invalid @enderror" />
+                                class="input-booking pr-3 @error('password_confirmation') is-invalid @enderror" />
                             @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
