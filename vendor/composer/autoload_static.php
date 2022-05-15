@@ -802,6 +802,7 @@ class ComposerStaticInite6e4bb3d06fd645c709205685d957597
         'App\\Http\\Requests\\Backend\\TagRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Backend/TagRequest.php',
         'App\\Http\\Requests\\Backend\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Backend/UserRequest.php',
         'App\\Http\\Requests\\Backend\\WorkingTimeRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Backend/WorkingTimeRequest.php',
+        'App\\Http\\Requests\\Frontend\\BookingRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Frontend/BookingRequest.php',
         'App\\Http\\Requests\\Frontend\\ProfileRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Frontend/ProfileRequest.php',
         'App\\Models\\About' => __DIR__ . '/../..' . '/app/Models/About.php',
         'App\\Models\\Adv' => __DIR__ . '/../..' . '/app/Models/Adv.php',

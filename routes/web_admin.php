@@ -79,6 +79,8 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
 
             /*  Products   */
             Route::resource('bookings',BookingController::class);
+            Route::get('bookings-pending', [BookingController::class, 'pending'])->name('bookings.pending');
+            Route::get('bookings-comming', [BookingController::class, 'comming'])->name('bookings.comming');
             Route::get('bookings-finished', [BookingController::class, 'finished'])->name('bookings.finished');
 
             Route::post('bookings-removeImage', [BookingController::class, 'removeImage'])->name('bookings.removeImage');
@@ -133,7 +135,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
 
             /*  socials   */
             Route::resource('socials'    ,SocialMediaController::class);
-            Route::get('socials-changeStatus', [SocialMediaController::class,'changeStatus'])->name('socials.changeStatus');
+            Route::get('Contacts', [SocialMediaController::class,'changeStatus'])->name('Contacts');
             Route::post('socials-destroyAll', [SocialMediaController::class,'massDestroy'])->name('socials.massDestroy');
             /*  phones   */
             Route::resource('phones'    ,PhoneController::class);

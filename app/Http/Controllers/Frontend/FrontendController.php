@@ -63,9 +63,10 @@ class FrontendController extends Controller
         $sliders = HomePage::whereType('Slider')->whereStatus('1')->latest()->get();
         $homeAbouts = HomePage::whereType('About Us')->whereStatus('1')->latest()->get();
         $footers = PageTitle::whereStatus('1')->latest()->get();
-        $categories = Category::whereStatus('1')->latest()->paginate(4);
+        $bestProducts = Product::whereFeatured('1')->whereStatus('1')->latest()->paginate(8);
+        $categories = Category::whereStatus('1')->latest()->paginate(8);
 
-        return view('frontend.index', compact('sliders', 'footers', 'homeAbouts', 'categories'));
+        return view('frontend.index', compact('sliders', 'footers', 'homeAbouts', 'categories', 'bestProducts'));
     }
     public function categories()
     {
@@ -114,8 +115,8 @@ class FrontendController extends Controller
     }
     public function bookingBooking(Request $request)
     {
-        try {
-            $input['user_id']       = $request->user_id != '' ? $request->user_id : '';
+        // try {
+            $input['user_id']       = $request->user_id;
             $input['name']          = $request->name;
             $input['mobile']        = $request->mobile;
             $input['email']         = $request->email;
@@ -131,10 +132,10 @@ class FrontendController extends Controller
             $Booking = Booking::create($input);
             Alert::success('Success', 'Your Booking Sent Successfully');
             return redirect()->back();
-        }catch (\Exception $e) {
-            Alert::error('Error Message', 'SomeThing Wrong, Please Try Again');
-            return redirect()->back();
-        }
+        // }catch (\Exception $e) {
+        //     Alert::error('Error Message', 'SomeThing Wrong, Please Try Again');
+        //     return redirect()->back();
+        // }
     }
 
 
@@ -143,23 +144,20 @@ class FrontendController extends Controller
     public function productDetails(Request $request)
     {
         $productDetails = Product::whereStatus(true)->where('id', $request->product)->first();
-        return view('frontend.products.productDetails', compact('productDetails'));
+        return view('frontend.productDetails', compact('productDetails'));
     }
 
     ##################################################################################################
     ################################################ Pages ###########################################
     ##################################################################################################
-    // public function profile()
-    // {
-    //     $userAddress = UserAddress::whereUserId(auth()->user()->id)->first();
-    //     return view('frontend.profile.profile', compact('userAddress'));
-    // }
     public function profile()
     {
         Carbon::setLocale('ar');
-        $bookings = Booking::whereStatus(0)->whereUserId(auth()->user()->id)->get();
-        $finishedBookings = Booking::whereStatus(1)->whereUserId(auth()->user()->id)->get();
         $userAddress = UserAddress::whereUserId(auth()->user()->id)->first();
+
+        $bookings = Booking::whereStatus(0)->whereUserId(auth()->user()->id)->get();
+        $bookings = Booking::whereDate('day', '>=', Carbon::today())->whereUserId(auth()->user()->id)->get();
+        $finishedBookings = Booking::whereDate('day', '<=', Carbon::today())->whereStatus(1)->whereUserId(auth()->user()->id)->get();
         return view('frontend.profile.profile', compact('bookings', 'userAddress', 'finishedBookings'));
     }
     #######
@@ -195,8 +193,13 @@ class FrontendController extends Controller
 
         $customer->update($input); //قم بانشاء كاتيجوري جديدة وخد المتغيرات بتاعتك من المتغير اللي اسمه انبوت
         Alert::success('تم تعديل بيانات حسابكم بنجاح', 'EROS');
-        return view('frontend.profile.profile');
-        // return redirect()->route('frontend.updateProfile');
+
+        Carbon::setLocale('ar');
+        $bookings = Booking::whereStatus(0)->whereUserId(auth()->user()->id)->get();
+        $finishedBookings = Booking::whereStatus(1)->whereUserId(auth()->user()->id)->get();
+        $userAddress = UserAddress::whereUserId(auth()->user()->id)->first();
+        return view('frontend.profile.profile', compact('bookings', 'userAddress', 'finishedBookings'));
+        // return redirect()->back();
     }
     #######
     public function editLocation(Request $request)
@@ -218,7 +221,12 @@ class FrontendController extends Controller
         $userAddress->update($input);
 
         Alert::success('تم تعديل موقعكم بنجاح', 'EROS');
-        return view('frontend.profile.profile', compact('userAddress'));
+
+        Carbon::setLocale('ar');
+        $bookings = Booking::whereStatus(0)->whereUserId(auth()->user()->id)->get();
+        $finishedBookings = Booking::whereStatus(1)->whereUserId(auth()->user()->id)->get();
+        return view('frontend.profile.profile', compact('bookings', 'userAddress', 'finishedBookings'));
+
     }
 
 

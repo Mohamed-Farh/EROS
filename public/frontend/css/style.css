@@ -721,7 +721,7 @@ transition: 0.5s all ease-in-out;
 .reviews-div .notification-containt img,
 .description-div .notification-containt img{
     width: 115px;
-    height: 75px;
+    height: 100px;
     border-radius: 8px;
     border: 2px solid #f9b519;
     object-fit: cover;

@@ -1,6 +1,6 @@
 @extends('layouts.auth_admin_app')
 
-@section('title', 'الحجوزات المنتهية')
+@section('title', 'الحجوزات المستقبلية')
 
 @section('style')
     <style>
@@ -42,7 +42,7 @@
     <div class="container">
         <div class="row ">
             <div class="col-6 d-flex text-left">
-                <h1 class=" text-left">الحجوزات المنتهية</h1>
+                <h1 class=" text-left">الحجوزات المستقبلية</h1>
             </div>
         </div>
 
@@ -61,13 +61,13 @@
                             <th class="text-light">البريد الالكتروني - رقم الهاتف</th>
                             <th class="text-light">الرسالة</th>
                             <th class="text-light">تاريخ الرسالة</th>
-                            {{-- <th class="text-light">الحالة</th> --}}
+                            <th class="text-light">الحالة</th>
                             <th class="text-light">العمليات</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($bookings as $k => $booking)
-                            @if ($booking->day < date('Y-m-d') )
+                            @if ($booking->day != date('Y-m-d') )
                                 <tr data-entry-id="{{ $booking->id }}">
                                     <td class="text-left">{{ $loop->index + 1 }}</td>
                                     <td class="text-center">{{ $booking->name }}</td>
@@ -231,7 +231,7 @@
                                     </td>
                                 </tr>
                             {{-- @elseif ($booking->day == date('Y-m-d') && $booking->start > date('h:i A')) --}}
-                            @elseif ( $booking->day == date('Y-m-d') && (date('h:i A', strtotime($booking->start))) < date('h:i A', strtotime('+2 hours')) )
+                            @elseif ( $booking->day == date('Y-m-d') && (date('h:i A', strtotime($booking->start))) > date('h:i A', strtotime('+2 hours')) )
                                 <tr data-entry-id="{{ $booking->id }}">
                                     <td class="text-left">{{ $loop->index + 1 }}</td>
                                     <td class="text-center">{{ $booking->name }}</td>
@@ -364,7 +364,7 @@
                                         <!-- end modal -->
                                     </td>
                                     <td class="text-center">{{ \Carbon\Carbon::parse($booking->created_at)->translatedFormat('l j F Y H:i a') }}</td>
-                                    {{-- <td class="text-center">
+                                    <td class="text-center">
                                         <span class="switch switch-icon">
                                             <label>
                                                 <input data-id="{{ $booking->id }}" class="status-class" type="checkbox"
@@ -374,7 +374,7 @@
                                                 <span></span>
                                             </label>
                                         </span>
-                                    </td> --}}
+                                    </td>
                                     <td class="text-center">
                                         <div style="display: flex" class="text-center justify-content-between">
                                             @ability('superAdmin', 'manage_contactUs_messages,show_contactUs_messages')

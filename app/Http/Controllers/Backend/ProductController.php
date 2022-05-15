@@ -95,9 +95,8 @@ class ProductController extends Controller
                 $file_size = $file->getSize();
                 $file_type = $file->getMimeType();
                 $path = ('images/product/' . $filename);
-                Image::make($file->getRealPath())->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save($path, 100);
+                Image::make($file->getRealPath())->resize(800, 550)->save($path, 100);
+                $input['image']  = $path;
 
                 $product->media()->create([
                     'file_name'     => $path,
@@ -185,10 +184,8 @@ class ProductController extends Controller
                 $file_size = $file->getSize();
                 $file_type = $file->getMimeType();
                 $path = ('images/product/' . $filename);
-                Image::make($file->getRealPath())->resize(800, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save($path, 100);
-
+                Image::make($file->getRealPath())->resize(800, 550)->save($path, 100);
+                $input['image']  = $path;
                 $product->media()->create([
                     'file_name'     => $path,
                     'file_size'     => $file_size,

@@ -39,6 +39,8 @@ Route::get('/',             [FrontendController::class, 'index'   ])->name('fron
 
 Route::get('categories',     [FrontendController::class, 'categories'    ])->name('frontend.categories');
 Route::get('/categories/{category}',   [FrontendController::class, 'categoryDetails'  ]);
+Route::get('/productDetails',   [FrontendController::class, 'productDetails'])->name('frontend.productDetails');
+
 Route::post('send-contact-message',     [FrontendController::class, 'sendContactMessage'    ])->name('frontend.send-contact-message');
 Route::get('/contact-us',    [FrontendController::class, 'contactUs'])->name('frontend.contact-us');
 Route::get('/about-us',    [FrontendController::class, 'aboutUs'])->name('frontend.about-us');

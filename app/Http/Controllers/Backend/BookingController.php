@@ -21,16 +21,14 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //All Bookings
     public function index()
     {
         Carbon::setLocale('ar');
-
         if (!\auth()->user()->ability('superAdmin', 'manage_bookings,show_bookings')) {
             return redirect('admin/index');
         }
-
         $bookings = Booking::with('category', 'product')
-
         ->when(\request()->keyword !=null, function($query){
             $query->search(\request()->keyword);
         })
@@ -38,23 +36,59 @@ class BookingController extends Controller
             $query->whereStatus(\request()->status);
         })
         ->orderBy(\request()->sort_by ?? 'id' ,  \request()->order_by ?? 'desc')
-
-        ->whereStatus('0')
-
         ->paginate(\request()->limit_by ?? 10);
-
-
         return view('backend.bookings.index', compact('bookings'));
+    }
+
+    //Pending Bookings
+    public function pending()
+    {
+        Carbon::setLocale('ar');
+        if (!\auth()->user()->ability('superAdmin', 'manage_bookings,show_bookings')) {
+            return redirect('admin/index');
+        }
+        $bookings = Booking::with('category', 'product')
+        ->when(\request()->keyword !=null, function($query){
+            $query->search(\request()->keyword);
+        })
+        ->when(\request()->status !=null, function($query){
+            $query->whereStatus(\request()->status);
+        })
+        ->orderBy(\request()->sort_by ?? 'id' ,  \request()->order_by ?? 'desc')
+        ->whereStatus('0')
+        ->whereDate('day', '>=', Carbon::today())
+        ->paginate(\request()->limit_by ?? 10);
+        return view('backend.bookings.pending', compact('bookings'));
+    }
+
+    //Comming Bookings
+    public function comming()
+    {
+        Carbon::setLocale('ar');
+        if (!\auth()->user()->ability('superAdmin', 'manage_bookings,show_bookings')) {
+            return redirect('admin/index');
+        }
+        $bookings = Booking::with('category', 'product')
+        ->when(\request()->keyword !=null, function($query){
+            $query->search(\request()->keyword);
+        })
+        ->when(\request()->status !=null, function($query){
+            $query->whereStatus(\request()->status);
+        })
+        ->orderBy(\request()->sort_by ?? 'id' ,  \request()->order_by ?? 'desc')
+        ->whereStatus('1')
+        ->whereDate('day', '>=', Carbon::today())
+        ->paginate(\request()->limit_by ?? 10);
+        return view('backend.bookings.comming', compact('bookings'));
     }
 
     public function finished()
     {
+        Carbon::setLocale('ar');
         if (!\auth()->user()->ability('superAdmin', 'manage_bookings,show_bookings')) {
             return redirect('admin/index');
         }
-
         $bookings = Booking::with('category', 'product')
-
         ->when(\request()->keyword !=null, function($query){
             $query->search(\request()->keyword);
         })
@@ -62,12 +96,10 @@ class BookingController extends Controller
             $query->whereStatus(\request()->status);
         })
         ->orderBy(\request()->sort_by ?? 'id' ,  \request()->order_by ?? 'desc')
-
         ->whereStatus('1')
-
+        ->whereDate('day', '<=', Carbon::today())
         ->paginate(\request()->limit_by ?? 10);
-
-        return view('backend.bookings.index', compact('bookings'));
+        return view('backend.bookings.finished', compact('bookings'));
     }
 
     /**

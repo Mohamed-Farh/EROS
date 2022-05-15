@@ -13,11 +13,11 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <h4 class="modal-title">تسجيل دخول</h4>
+                <h4 class="modal-title">تسجيل الدخول</h4>
                 <!-- Start PageTile -->
                 @php
                     $pageTitles = \App\Models\PageTitle::whereStatus(1)
-                        ->wherePage('تسجيل دخول')
+                        ->wherePage('تسجيل الدخول')
                         ->get();
                 @endphp
                 @if ($pageTitles->count() > 0)

@@ -5,15 +5,15 @@
 @section('content')
 
 
-    {{-- @php
+    @php
         $customerCount = \App\Models\User::whereHas('roles', function($query){
             $query->where('name', 'customer');
         })->count();
-        $buildingCount = \App\Models\BuildingProduct::count();
-        $carCount = \App\Models\CarProduct::count();
+        $categoryCount = \App\Models\Category::count();
         $productCount = \App\Models\Product::count();
-        $jobCount = \App\Models\job::count();
-        $medicalCount = \App\Models\Medical::count();
+        $allBookingCount = \App\Models\Booking::whereStatus('0')->whereDate('day', '>=', \Carbon\Carbon::today())->count();
+        $BookingCount = \App\Models\Booking::whereDate('day', '>=', \Carbon\Carbon::today())->count();
+        $finishedBookingCount = \App\Models\Booking::whereDate('day', '<', \Carbon\Carbon::today())->count();
     @endphp
 
     <!--begin::Content-->
@@ -66,14 +66,14 @@
                                         <span class="symbol-label">
                                             <span class="svg-icon svg-icon-xl svg-icon-primary">
                                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
-                                                <i class="fas fa-car-side"></i>
+                                                <i class="fas fa-shopping-bag"></i>
                                                 <!--end::Svg Icon-->
                                             </span>
                                         </span>
                                     </span>
                                     <div class="d-flex flex-column text-right">
-                                        <span class="text-dark-75 font-weight-bolder font-size-h3">{{ $carCount }}</span>
-                                        <span class="text-muted font-weight-bold mt-2">السيارات</span>
+                                        <span class="text-dark-75 font-weight-bolder font-size-h3">{{ $allBookingCount }}</span>
+                                        <span class="text-muted font-weight-bold mt-2">الحجوزات (قائمة الانتظار)</span>
                                     </div>
                                 </div>
                                 <div class="card-rounded-bottom" data-color="primary" style="height: 150px"></div>
@@ -94,14 +94,14 @@
                                         <span class="symbol-label">
                                             <span class="svg-icon svg-icon-xl svg-icon-success">
                                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
-                                                <i class="fas fa-city"></i>
+                                                <i class="fas fa-th-large"></i>
                                                 <!--end::Svg Icon-->
                                             </span>
                                         </span>
                                     </span>
                                     <div class="d-flex flex-column text-right">
-                                        <span class="text-dark-75 font-weight-bolder font-size-h3">{{ $buildingCount }}</span>
-                                        <span class="text-muted font-weight-bold mt-2">العقارات</span>
+                                        <span class="text-dark-75 font-weight-bolder font-size-h3">{{ $categoryCount }}</span>
+                                        <span class="text-muted font-weight-bold mt-2"> الخدمات</span>
                                     </div>
                                 </div>
                                 <div class="card-rounded-bottom" data-color="success" style="height: 150px">
@@ -120,42 +120,42 @@
                                         <span class="symbol-label">
                                             <span class="svg-icon svg-icon-xl svg-icon-primary">
                                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
-                                                <i class="fas fa-tshirt"></i>
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <!--end::Svg Icon-->
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <div class="d-flex flex-column text-right">
+                                        <span class="text-dark-75 font-weight-bolder font-size-h3">{{ $BookingCount }}</span>
+                                        <span class="text-muted font-weight-bold mt-2">الحجوزات المستقبلية</span>
+                                    </div>
+                                </div>
+                                <div class="card-rounded-bottom" data-color="primary" style="height: 150px"></div>
+                            </div>
+                            <!--end::Body-->
+                        </div>
+                        <!--end::Stats Widget 12-->
+                    </div>
+
+
+                    <div class="col-lg-4 col-xxl-4">
+                        <!--begin::Stats Widget 11-->
+                        <div class="card card-custom card-stretch card-stretch-half gutter-b">
+                            <!--begin::Body-->
+                            <div class="card-body p-0">
+                                <div class="d-flex align-items-center justify-content-between card-spacer flex-grow-1">
+                                    <span class="symbol symbol-50 symbol-light-success mr-2">
+                                        <span class="symbol-label">
+                                            <span class="svg-icon svg-icon-xl svg-icon-success">
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+                                                <i class="fab fa-phoenix-framework"></i>
                                                 <!--end::Svg Icon-->
                                             </span>
                                         </span>
                                     </span>
                                     <div class="d-flex flex-column text-right">
                                         <span class="text-dark-75 font-weight-bolder font-size-h3">{{ $productCount }}</span>
-                                        <span class="text-muted font-weight-bold mt-2">المنتجات</span>
-                                    </div>
-                                </div>
-                                <div class="card-rounded-bottom" data-color="primary" style="height: 150px"></div>
-                            </div>
-                            <!--end::Body-->
-                        </div>
-                        <!--end::Stats Widget 12-->
-                    </div>
-
-
-                    <div class="col-lg-4 col-xxl-4">
-                        <!--begin::Stats Widget 11-->
-                        <div class="card card-custom card-stretch card-stretch-half gutter-b">
-                            <!--begin::Body-->
-                            <div class="card-body p-0">
-                                <div class="d-flex align-items-center justify-content-between card-spacer flex-grow-1">
-                                    <span class="symbol symbol-50 symbol-light-success mr-2">
-                                        <span class="symbol-label">
-                                            <span class="svg-icon svg-icon-xl svg-icon-success">
-                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
-                                                <i class="fas fa-clinic-medical"></i>
-                                                <!--end::Svg Icon-->
-                                            </span>
-                                        </span>
-                                    </span>
-                                    <div class="d-flex flex-column text-right">
-                                        <span class="text-dark-75 font-weight-bolder font-size-h3">{{ $medicalCount }}</span>
-                                        <span class="text-muted font-weight-bold mt-2">الخدمات الطبية</span>
+                                        <span class="text-muted font-weight-bold mt-2">الخدمات </span>
                                     </div>
                                 </div>
                                 <div class="card-rounded-bottom" data-color="success" style="height: 150px">
@@ -174,14 +174,14 @@
                                         <span class="symbol-label">
                                             <span class="svg-icon svg-icon-xl svg-icon-primary">
                                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
-                                                <i class="fas fa-briefcase"></i>
+                                                <i class="far fa-calendar-check"></i>
                                                 <!--end::Svg Icon-->
                                             </span>
                                         </span>
                                     </span>
                                     <div class="d-flex flex-column text-right">
-                                        <span class="text-dark-75 font-weight-bolder font-size-h3">{{ $jobCount }}</span>
-                                        <span class="text-muted font-weight-bold mt-2">الوظائف</span>
+                                        <span class="text-dark-75 font-weight-bolder font-size-h3">{{ $finishedBookingCount }}</span>
+                                        <span class="text-muted font-weight-bold mt-2">الحجوزات المنتهية</span>
                                     </div>
                                 </div>
                                 <div class="card-rounded-bottom" data-color="primary" style="height: 150px"></div>
@@ -198,7 +198,7 @@
         </div>
         <!--end::Entry-->
     </div>
-    <!--end::Content--> --}}
+    <!--end::Content-->
 
 
 @endsection

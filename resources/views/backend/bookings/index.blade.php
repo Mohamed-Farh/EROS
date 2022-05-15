@@ -1,6 +1,6 @@
 @extends('layouts.auth_admin_app')
 
-@section('title', 'الحجوزات (قائمة الانتظار)')
+@section('title', 'الحجوزات')
 
 @section('style')
     <style>
@@ -42,7 +42,7 @@
     <div class="container">
         <div class="row ">
             <div class="col-6 d-flex text-left">
-                <h1 class=" text-left">الحجوزات (قائمة الانتظار)</h1>
+                <h1 class=" text-left">الحجوزات</h1>
             </div>
         </div>
 
@@ -56,11 +56,11 @@
                             <th class="text-light">No</th>
                             <th class="text-light">الاسم</th>
                             <th class="text-light">الخدمة</th>
+                            <th class="text-light">موعد الحجز</th>
                             <th class="text-light">عنوان المرسل</th>
                             <th class="text-light">البريد الالكتروني - رقم الهاتف</th>
                             <th class="text-light">الرسالة</th>
                             <th class="text-light">تاريخ الرسالة</th>
-                            <th class="text-light">الحالة</th>
                             <th class="text-light">العمليات</th>
                         </tr>
                     </thead>
@@ -73,6 +73,7 @@
                                     <p class="text-gray-400"><b>{{ $booking->category->name }}</b></p>
                                     <a>{{ $booking->product_id != '' ? $booking->product->name : '' }}</a>
                                 </td>
+                                <td class="text-center">{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->start)) }}</td>
                                 <td class="text-center">
                                     @if ($booking->country_id != '')
                                         @if ($booking->city_id != '' && $booking->state_id != '')
@@ -139,7 +140,7 @@
                                                             <label class="control-label">ميعاد الحجز</label>
                                                         </div>
                                                         <div class="col-9">
-                                                            <input  value="{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->time)) }}" class="input-booking" readonly style="color: orange;" >
+                                                            <input  value="{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->start)) }}" class="input-booking" readonly style="color: orange;" >
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -197,17 +198,6 @@
                                     <!-- end modal -->
                                 </td>
                                 <td class="text-center">{{ \Carbon\Carbon::parse($booking->created_at)->translatedFormat('l j F Y H:i a') }}</td>
-                                <td class="text-center">
-                                    <span class="switch switch-icon">
-                                        <label>
-                                            <input data-id="{{ $booking->id }}" class="status-class" type="checkbox"
-                                                data-onstyle="success" data-offstyle="danger" data-toggle="toggle"
-                                                data-on="On" data-width="40" data-height="30" data-off="Off"
-                                                {{ $booking->status == 1 ? 'checked' : '' }}>
-                                            <span></span>
-                                        </label>
-                                    </span>
-                                </td>
                                 <td class="text-center">
                                     <div style="display: flex" class="text-center justify-content-between">
                                         @ability('superAdmin', 'manage_contactUs_messages,show_contactUs_messages')

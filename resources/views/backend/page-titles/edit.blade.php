@@ -27,8 +27,15 @@
                         <div class="col-9">
                             <label for="page">الصفحة</label>
                             <select name="page" class="form-control">
-                                <option value="الرئيسية (الخدمات)" {{ old('page', $pageTitle->page) == "الرئيسية (الخدمات)" ? 'selected' : null }}>الرئيسية (الخدمات)</option>
-                                <option value="الرئيسية (مقتراحاتك)" {{ old('page', $pageTitle->page) == "الرئيسية (مقتراحاتك)" ? 'selected' : null }}>الرئيسية (مقتراحاتك)</option>
+                                <option value="تسجيل الدخول" {{ old('page', $pageTitle->page ) == "تسجيل الدخول" ? 'selected' : null }}>تسجيل الدخول</option>
+                                <option value="انشاء حساب" {{ old('page', $pageTitle->page ) == "انشاء حساب" ? 'selected' : null }}>انشاء حساب</option>
+                                <option value="الرئيسية (الخدمات)" {{ old('page', $pageTitle->page ) == "الرئيسية (الخدمات)" ? 'selected' : null }}>الرئيسية (الخدمات)</option>
+                                <option value="الرئيسية (الخدمات المميزة)" {{ old('page', $pageTitle->page ) == "الرئيسية (الخدمات المميزة)" ? 'selected' : null }}>الرئيسية (الخدمات المميزة)</option>
+                                <option value="الرئيسية (مقتراحاتك)" {{ old('page', $pageTitle->page ) == "الرئيسية (مقتراحاتك)" ? 'selected' : null }}>الرئيسية (مقتراحاتك)</option>
+                                <option value="الخدمات" {{ old('page', $pageTitle->page ) == "الخدمات" ? 'selected' : null }}>الخدمات</option>
+                                <option value="حجز موعد" {{ old('page', $pageTitle->page ) == "حجز موعد" ? 'selected' : null }}>حجز موعد</option>
+                                <option value="اتصل بنا" {{ old('page', $pageTitle->page ) == "اتصل بنا" ? 'selected' : null }}>اتصل بنا</option>
+                                <option value="Footer" {{ old('page', $pageTitle->page ) == "Footer" ? 'selected' : null }}>Footer</option>
                                 <option value="Footer" {{ old('page', $pageTitle->page ) == "Footer" ? 'selected' : null }}>Footer</option>
                             </select>
                             @error('page')<span class="text-danger">{{ $message }}</span>@enderror

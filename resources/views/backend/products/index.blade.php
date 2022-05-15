@@ -65,7 +65,6 @@
                         <tr class="text-light">
                             <th class="text-light">No</th>
                             <th class="text-light">الصورة</th>
-                            <th class="text-light">العميل | صاحب الاعلان</th>
                             <th class="text-light">الاسم</th>
                             <th class="text-light">القسم</th>
                             <th class="text-light">الكمية</th>
@@ -88,9 +87,9 @@
                                     @endif
                                 </td>
                                 <td class="text-center">{{ $product->name }}</td>
-                                <td class="text-center">{{ $product->category->name }}</td>
-                                <td class="text-center">{{ $product->quantity }}</td>
-                                <td class="text-center">{{ $product->price }}</td>
+                                <td class="text-center">{{ $product->category_id != '' ? $product->category->name : '' }}</td>
+                                <td class="text-center">{{ $product->quantity != '' ? $product->quantity  : '' }}</td>
+                                <td class="text-center">{{ $product->price != '' ? $product->price : '' }}</td>
                                 <td class="text-center">
                                     @if($product->country)
                                         {{ $product->country->name .' - '. $product->state->name .' - '. $product->city->name }}

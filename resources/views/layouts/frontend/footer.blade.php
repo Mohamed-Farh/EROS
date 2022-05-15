@@ -31,8 +31,9 @@ $locations = \App\Models\Location::whereStatus(1)
                         <h5>روابط مختصرة</h5>
                         <ul>
                             <li><a href="{{ route('frontend.index') }}">الرئيسية</a></li>
-                            <li><a href="{{ route('frontend.about-us') }}"> من نحن</a></li>
                             <li><a href="{{ route('frontend.categories') }}"> الخدمات</a></li>
+                            <li><a href="{{ route('frontend.booking') }}"> حجز موعد</a></li>
+                            <li><a href="{{ route('frontend.about-us') }}"> من نحن</a></li>
                             <li><a href="{{ route('frontend.contact-us') }}"> اتصل بنا</a></li>
                         </ul>
                     </div>

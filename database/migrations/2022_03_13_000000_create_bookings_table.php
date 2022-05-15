@@ -27,7 +27,7 @@ class CreateBookingsTable extends Migration
             $table->foreignId('state_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('city_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('day')->nullable();
-            $table->time('start')->nullable();
+            $table->time('')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

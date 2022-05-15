@@ -29,6 +29,7 @@
                                 <option value="تسجيل الدخول" {{ old('page') == "تسجيل الدخول" ? 'selected' : null }}>تسجيل الدخول</option>
                                 <option value="انشاء حساب" {{ old('page') == "انشاء حساب" ? 'selected' : null }}>انشاء حساب</option>
                                 <option value="الرئيسية (الخدمات)" {{ old('page') == "الرئيسية (الخدمات)" ? 'selected' : null }}>الرئيسية (الخدمات)</option>
+                                <option value="الرئيسية (الخدمات المميزة)" {{ old('page') == "الرئيسية (الخدمات المميزة)" ? 'selected' : null }}>الرئيسية (الخدمات المميزة)</option>
                                 <option value="الرئيسية (مقتراحاتك)" {{ old('page') == "الرئيسية (مقتراحاتك)" ? 'selected' : null }}>الرئيسية (مقتراحاتك)</option>
                                 <option value="الخدمات" {{ old('page') == "الخدمات" ? 'selected' : null }}>الخدمات</option>
                                 <option value="حجز موعد" {{ old('page') == "حجز موعد" ? 'selected' : null }}>حجز موعد</option>

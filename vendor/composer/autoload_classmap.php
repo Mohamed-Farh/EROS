@@ -80,6 +80,7 @@ return array(
     'App\\Http\\Requests\\Backend\\TagRequest' => $baseDir . '/app/Http/Requests/Backend/TagRequest.php',
     'App\\Http\\Requests\\Backend\\UserRequest' => $baseDir . '/app/Http/Requests/Backend/UserRequest.php',
     'App\\Http\\Requests\\Backend\\WorkingTimeRequest' => $baseDir . '/app/Http/Requests/Backend/WorkingTimeRequest.php',
+    'App\\Http\\Requests\\Frontend\\BookingRequest' => $baseDir . '/app/Http/Requests/Frontend/BookingRequest.php',
     'App\\Http\\Requests\\Frontend\\ProfileRequest' => $baseDir . '/app/Http/Requests/Frontend/ProfileRequest.php',
     'App\\Models\\About' => $baseDir . '/app/Models/About.php',
     'App\\Models\\Adv' => $baseDir . '/app/Models/Adv.php',

@@ -203,6 +203,43 @@
     <!-- end services -->
 
 
+        <!-- start services -->
+        <div class="services py-4 text-center">
+            <div class="container">
+                <h5>الخدمات المميزة</h5>
+                <!-- Start PageTile -->
+                @php
+                    $pageTitles = \App\Models\PageTitle::whereStatus(1)
+                        ->wherePage('الرئيسية (الخدمات المميزة)')
+                        ->get();
+                @endphp
+                @if ($pageTitles->count() > 0)
+                    @foreach ($pageTitles as $pageTitle)
+                        <p class="text-center" style="color:white; text-align: justify !important;">{{ $pageTitle->title }}</p>
+                    @endforeach
+                @endif
+                <!-- End PageTile -->
+
+                <div class="row" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                    @foreach ($bestProducts as $product)
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 mt-3">
+                            <div class="image-services">
+                                <img src="{{ asset($product->firstMedia->file_name) }}" alt="Avatar" class="image"
+                                    style="width:100%">
+                                <a href="{{ route('frontend.productDetails', ['product' => $product]) }}">
+                                    <div class="middle">
+                                        <div class="text">{{ $product->name }}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <!-- end services -->
+
+
     <!-- start booking -->
     <div class="booking py-4 text-right">
         <div class="container">

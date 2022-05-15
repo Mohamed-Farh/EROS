@@ -65,6 +65,20 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="date" name="day" class="input-date addForm" style="    width: 100%;" />
+                            @error('day')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-6">
+                            <input type="time" name="start" class="input-date addForm" style="    width: 100%;" />
+                            @error('start')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
 
                     @guest
                         <div class="row">
@@ -147,20 +161,6 @@
                         </div>
                     @endauth
 
-                    <div class="row">
-                        <div class="col-6">
-                            <input type="date" name="day" class="input-date addForm" style="    width: 100%;" />
-                            @error('day')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="col-6">
-                            <input type="time" name="start" class="input-date addForm" style="    width: 100%;" />
-                            @error('start')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
 
                     <input type="text" name="subject" value="{{ old('subject') }}" class="input-booking"
                         placeholder="عنوان الرسالة">
@@ -186,114 +186,119 @@
 
 @endsection
 @section('script')
-    <script>
-        $(function() {
-            contactUsStates();
-            contactUsCities();
-
-            $("#contactUs_country_id").change(function() {
+    @guest
+        <script>
+            $(function() {
                 contactUsStates();
                 contactUsCities();
-                return false;
+
+                $("#contactUs_country_id").change(function() {
+                    contactUsStates();
+                    contactUsCities();
+                    return false;
+                });
+
+                $("#contactUs_state_id").change(function() {
+                    contactUsCities();
+                    return false;
+                });
+
+                function contactUsStates() {
+                    console.log('A');
+                    let countryIdVal = $('#contactUs_country_id').val() != null ? $('#contactUs_country_id').val() :
+                        '{{ old('country_id') }}'; //عملت متغير يحمل قيمة رقم الدوله و في حالة بعت البيانات في الفورم و في حاجه غلط يرجع القيم اللي كنت مختارها قبل ما الفورم تتبعت
+                    $.get("{{ route('frontend.frontState') }}", {
+                        country_id: countryIdVal
+                    }, function(data) { //هعمل فانكشن واديها قيمه الدوله كمتغير فيها
+                        $('option', $('#contactUs_state_id')).remove(); //هحذف كل الاوبشن اللي موجدود في السيلكت
+                        $('#contactUs_state_id').append($('<option></option>').val('').html('المحافظة'));
+                        $.each(data, function(val, text) {
+                            let selectedVal = text.id == '{{ old('state_id') }}' ? "selected" : "";
+                            $("#contactUs_state_id").append($('<option ' + selectedVal + '></option>')
+                                .val(
+                                    text
+                                    .id).html(text.name));
+                        });
+                    }, "json")
+
+                }
+
+                function contactUsCities() {
+                    let stateIdVal = $('#contactUs_state_id').val() != null ? $('#contactUs_state_id').val() :
+                        '{{ old('state_id') }}'; //عملت متغير يحمل قيمة رقم الدوله و في حالة بعت البيانات في الفورم و في حاجه غلط يرجع القيم اللي كنت مختارها قبل ما الفورم تتبعت
+                    $.get("{{ route('frontend.frontCity') }}", {
+                        state_id: stateIdVal
+                    }, function(data) { //هعمل فانكشن واديها قيمه الدوله كمتغير فيها
+                        $('option', $('#contactUs_city_id')).remove(); //هحذف كل الاوبشن اللي موجدود في السيلكت
+                        $('#contactUs_city_id').append($('<option></option>').val('').html('المدينة'));
+                        $.each(data, function(val, text) {
+                            let selectedVal = text.id == '{{ old('city_id') }}' ? "selected" : "";
+                            $("#contactUs_city_id").append($('<option ' + selectedVal + '></option>')
+                                .val(text.id).html(text.name));
+                        });
+                    }, "json")
+                }
+
             });
+        </script>
+    @endguest
 
-            $("#contactUs_state_id").change(function() {
-                contactUsCities();
-                return false;
-            });
-
-            function contactUsStates() {
-                console.log('A');
-                let countryIdVal = $('#contactUs_country_id').val() != null ? $('#contactUs_country_id').val() :
-                    '{{ old('country_id') }}'; //عملت متغير يحمل قيمة رقم الدوله و في حالة بعت البيانات في الفورم و في حاجه غلط يرجع القيم اللي كنت مختارها قبل ما الفورم تتبعت
-                $.get("{{ route('frontend.frontState') }}", {
-                    country_id: countryIdVal
-                }, function(data) { //هعمل فانكشن واديها قيمه الدوله كمتغير فيها
-                    $('option', $('#contactUs_state_id')).remove(); //هحذف كل الاوبشن اللي موجدود في السيلكت
-                    $('#contactUs_state_id').append($('<option></option>').val('').html('المحافظة'));
-                    $.each(data, function(val, text) {
-                        let selectedVal = text.id == '{{ old('state_id') }}' ? "selected" : "";
-                        $("#contactUs_state_id").append($('<option ' + selectedVal + '></option>')
-                            .val(
-                                text
-                                .id).html(text.name));
-                    });
-                }, "json")
-
-            }
-
-            function contactUsCities() {
-                let stateIdVal = $('#contactUs_state_id').val() != null ? $('#contactUs_state_id').val() :
-                    '{{ old('state_id') }}'; //عملت متغير يحمل قيمة رقم الدوله و في حالة بعت البيانات في الفورم و في حاجه غلط يرجع القيم اللي كنت مختارها قبل ما الفورم تتبعت
-                $.get("{{ route('frontend.frontCity') }}", {
-                    state_id: stateIdVal
-                }, function(data) { //هعمل فانكشن واديها قيمه الدوله كمتغير فيها
-                    $('option', $('#contactUs_city_id')).remove(); //هحذف كل الاوبشن اللي موجدود في السيلكت
-                    $('#contactUs_city_id').append($('<option></option>').val('').html('المدينة'));
-                    $.each(data, function(val, text) {
-                        let selectedVal = text.id == '{{ old('city_id') }}' ? "selected" : "";
-                        $("#contactUs_city_id").append($('<option ' + selectedVal + '></option>')
-                            .val(text.id).html(text.name));
-                    });
-                }, "json")
-            }
-
-        });
-    </script>
-
-    <script>
-        $(function() {
-            populateStates();
-            populateCities();
-
-            $("#auth_country_id").change(function() {
+    @auth
+        <script>
+            $(function() {
                 populateStates();
                 populateCities();
-                return false;
+
+                $("#auth_country_id").change(function() {
+                    populateStates();
+                    populateCities();
+                    return false;
+                });
+
+                $("#auth_state_id").change(function() {
+                    populateCities();
+                    return false;
+                });
+
+                function populateStates() {
+                    let countryIdVal = $('#auth_country_id').val() != null ? $('#auth_country_id').val() :
+                        '{{ old('country_id', $customer_address->country_id) }}'; //عملت متغير يحمل قيمة رقم الدوله و في حالة بعت البيانات في الفورم و في حاجه غلط يرجع القيم اللي كنت مختارها قبل ما الفورم تتبعت
+                    $.get("{{ route('admin.backend.get_state') }}", {
+                        country_id: countryIdVal
+                    }, function(data) { //هعمل فانكشن واديها قيمه الدوله كمتغير فيها
+                        $('option', $('#auth_state_id')).remove(); //هحذف كل الاوبشن اللي موجدود في السيلكت
+                        $('#auth_state_id').append($('<option></option>').val('').html('---'));
+                        $.each(data, function(val, text) {
+                            let selectedVal = text.id ==
+                                '{{ old('state_id', $customer_address->state_id) }}' ? "selected" : "";
+                            $("#auth_state_id").append($('<option ' + selectedVal + '></option>').val(text
+                                .id).html(text.name));
+                        });
+                    }, "json")
+
+                }
+
+                function populateCities() {
+                    let stateIdVal = $('#auth_state_id').val() != null ? $('#auth_state_id').val() :
+                        '{{ old('state_id', $customer_address->state_id) }}'; //عملت متغير يحمل قيمة رقم الدوله و في حالة بعت البيانات في الفورم و في حاجه غلط يرجع القيم اللي كنت مختارها قبل ما الفورم تتبعت
+                    $.get("{{ route('admin.backend.get_city') }}", {
+                        state_id: stateIdVal
+                    }, function(data) { //هعمل فانكشن واديها قيمه الدوله كمتغير فيها
+                        $('option', $('#auth_city_id')).remove(); //هحذف كل الاوبشن اللي موجدود في السيلكت
+                        $('#auth_city_id').append($('<option></option>').val('').html('---'));
+                        $.each(data, function(val, text) {
+                            let selectedVal = text.id ==
+                                '{{ old('city_id', $customer_address->city_id) }}' ? "selected" : "";
+                            $("#auth_city_id").append($('<option ' + selectedVal + '></option>').val(text.id)
+                                .html(text.name));
+                        });
+                    }, "json")
+                }
+
             });
+        </script>
 
-            $("#auth_state_id").change(function() {
-                populateCities();
-                return false;
-            });
-
-            function populateStates() {
-                let countryIdVal = $('#auth_country_id').val() != null ? $('#auth_country_id').val() :
-                    '{{ old('country_id', $customer_address->country_id) }}'; //عملت متغير يحمل قيمة رقم الدوله و في حالة بعت البيانات في الفورم و في حاجه غلط يرجع القيم اللي كنت مختارها قبل ما الفورم تتبعت
-                $.get("{{ route('admin.backend.get_state') }}", {
-                    country_id: countryIdVal
-                }, function(data) { //هعمل فانكشن واديها قيمه الدوله كمتغير فيها
-                    $('option', $('#auth_state_id')).remove(); //هحذف كل الاوبشن اللي موجدود في السيلكت
-                    $('#auth_state_id').append($('<option></option>').val('').html('---'));
-                    $.each(data, function(val, text) {
-                        let selectedVal = text.id ==
-                            '{{ old('state_id', $customer_address->state_id) }}' ? "selected" : "";
-                        $("#auth_state_id").append($('<option ' + selectedVal + '></option>').val(text
-                            .id).html(text.name));
-                    });
-                }, "json")
-
-            }
-
-            function populateCities() {
-                let stateIdVal = $('#auth_state_id').val() != null ? $('#auth_state_id').val() :
-                    '{{ old('state_id', $customer_address->state_id) }}'; //عملت متغير يحمل قيمة رقم الدوله و في حالة بعت البيانات في الفورم و في حاجه غلط يرجع القيم اللي كنت مختارها قبل ما الفورم تتبعت
-                $.get("{{ route('admin.backend.get_city') }}", {
-                    state_id: stateIdVal
-                }, function(data) { //هعمل فانكشن واديها قيمه الدوله كمتغير فيها
-                    $('option', $('#auth_city_id')).remove(); //هحذف كل الاوبشن اللي موجدود في السيلكت
-                    $('#auth_city_id').append($('<option></option>').val('').html('---'));
-                    $.each(data, function(val, text) {
-                        let selectedVal = text.id ==
-                            '{{ old('city_id', $customer_address->city_id) }}' ? "selected" : "";
-                        $("#auth_city_id").append($('<option ' + selectedVal + '></option>').val(text.id)
-                            .html(text.name));
-                    });
-                }, "json")
-            }
-
-        });
-    </script>
+    @endauth
 
     <script>
         $(document).ready(function() {

@@ -24,19 +24,15 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name'    => ['required', 'string', 'max:255'],
-            'last_name'     => ['required', 'string', 'max:255'],
-            'email'         => ['required', 'string', 'email', 'unique:users,email,'.auth()->id()],
-            'mobile'        => ['required', 'numeric', 'unique:users,email,'.auth()->id()],
-            'password'      => ['nullable', 'string', 'min:8', 'confirmed'],
-            'user_image'    => ['nullable', 'file', 'mimes:jpg,jpeg,png,svg', 'max:10000'],
+            'user_id'       => ['nullable', 'exists:users,id'],
+            'day'           => ['required', 'date', 'after_or_equal:now'],
         ];
     }
 
     public function attributes()
     {
         return [
-            'user_image' => 'Profile image',
+            // 'user_image' => 'Profile image',
         ];
     }
 

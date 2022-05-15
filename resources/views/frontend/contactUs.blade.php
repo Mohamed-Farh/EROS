@@ -42,6 +42,18 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
 
+                            <input type="text" name="mobile" value="{{ old('mobile') }}" class="form-control" required
+                                placeholder="رقم الهاتف">
+                            @error('mobile')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+
+                            <input type="email" name="email" value="{{ old('email') }}" class="form-control" required
+                                placeholder="البريد الالكتروني">
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            
                             <div class="row">
                                 <div class="col-4">
                                     <select name="country_id" placeholder="الدولة" id="contactUs_country_id"
@@ -79,17 +91,6 @@
                                 </div>
                             </div>
 
-                            <input type="text" name="mobile" value="{{ old('mobile') }}" class="form-control" required
-                                placeholder="رقم الهاتف">
-                            @error('mobile')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-
-                            <input type="email" name="email" value="{{ old('email') }}" class="form-control" required
-                                placeholder="البريد الالكتروني">
-                            @error('email')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
 
                             <input type="text" name="subject" value="{{ old('subject') }}" class="form-control"
                                 placeholder="عنوان الرسالة">

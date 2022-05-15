@@ -150,7 +150,7 @@ class EntrustSeeder extends Seeder
 
 
         // Admins
-        $manageAdmins = Permission::create([ 'name' => 'manage_admins', 'display_name' => 'الأدمن', 'route' => 'admins', 'module' => 'admins', 'as' => 'admins.index', 'icon' => 'fas fa-user-shield', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '0', 'appear' => '1', 'ordering' => '200', ]);
+        $manageAdmins = Permission::create([ 'name' => 'manage_admins', 'display_name' => 'الأدمن', 'route' => 'admins.index', 'module' => 'admins', 'as' => 'admins.index', 'icon' => 'fas fa-user-shield', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '0', 'appear' => '1', 'ordering' => '200', ]);
         $manageAdmins->parent_show = $manageAdmins->id;
         $manageAdmins->save();
         $showAdmins    = Permission::create([ 'name' => 'show_admins',          'display_name' => 'الأدمن',              'route' => 'admins.index',          'module' => 'admins', 'as' => 'admins.index',       'icon' => 'fas fa-user-shield',  'parent' => $manageAdmins->id, 'parent_show' => $manageAdmins->id, 'parent_original' => $manageAdmins->id,'sidebar_link' => '0', 'appear' => '1', ]);
@@ -159,7 +159,7 @@ class EntrustSeeder extends Seeder
         $destroyAdmins = Permission::create([ 'name' => 'delete_admins',        'display_name' => 'حذف ادمن',       'route' => 'admins.destroy',        'module' => 'admins', 'as' => 'admins.destroy',     'icon' => null,                  'parent' => $manageAdmins->id, 'parent_show' => $manageAdmins->id, 'parent_original' => $manageAdmins->id,'sidebar_link' => '0', 'appear' => '0', ]);
 
         // Users
-        $manageUsers = Permission::create([ 'name' => 'manage_users', 'display_name' => 'المستخدمين', 'route' => 'admins', 'module' => 'users', 'as' => 'users.index', 'icon' => 'fas fa-users', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '0', 'appear' => '1', 'ordering' => '210', ]);
+        $manageUsers = Permission::create([ 'name' => 'manage_users', 'display_name' => 'المستخدمين', 'route' => 'users.index', 'module' => 'users', 'as' => 'users.index', 'icon' => 'fas fa-users', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '0', 'appear' => '1', 'ordering' => '210', ]);
         $manageUsers->parent_show = $manageUsers->id;
         $manageUsers->save();
         $showUsers    = Permission::create([ 'name' => 'show_users',          'display_name' => 'المستخدمين',              'route' => 'users.index',          'module' => 'users', 'as' => 'users.index',       'icon' => 'fas fa-users',        'parent' => $manageUsers->id, 'parent_show' => $manageUsers->id, 'parent_original' => $manageUsers->id,'sidebar_link' => '0', 'appear' => '1', ]);
@@ -167,18 +167,14 @@ class EntrustSeeder extends Seeder
         $updateUsers  = Permission::create([ 'name' => 'update_users',        'display_name' => 'تعديل مستخدم',       'route' => 'users.edit',           'module' => 'users', 'as' => 'users.edit',        'icon' => null,                  'parent' => $manageUsers->id, 'parent_show' => $manageUsers->id, 'parent_original' => $manageUsers->id,'sidebar_link' => '0', 'appear' => '0', ]);
         $destroyUsers = Permission::create([ 'name' => 'delete_users',        'display_name' => 'حذف مستخدم',       'route' => 'users.destroy',        'module' => 'users', 'as' => 'users.destroy',     'icon' => null,                  'parent' => $manageUsers->id, 'parent_show' => $manageUsers->id, 'parent_original' => $manageUsers->id,'sidebar_link' => '0', 'appear' => '0', ]);
 
-
         //Categories
-        $manageCategories = Permission::create([ 'name' => 'manage_categories', 'display_name' => 'أنواع الخدمات (الأقسام)', 'route' => 'categories', 'module' => 'categories', 'as' => 'categories.index', 'icon' => 'fas fa-th-large', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '5', ]);
+        $manageCategories = Permission::create([ 'name' => 'manage_categories', 'display_name' => 'أنواع الخدمات (الأقسام)', 'route' => 'categories.index', 'module' => 'categories', 'as' => 'categories.index', 'icon' => 'fas fa-th-large', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '5', ]);
         $manageCategories->parent_show = $manageCategories->id;
         $manageCategories->save();
         $showCategories    = Permission::create([ 'name' => 'show_categories',          'display_name' => 'الأقسام',       'route' => 'categories.index',          'module' => 'categories', 'as' => 'categories.index',       'icon' => 'fas fa-th',          'parent' => $manageCategories->id, 'parent_show' => $manageCategories->id, 'parent_original' => $manageCategories->id,'sidebar_link' => '1', 'appear' => '1', ]);
-        // $createCategories  = Permission::create([ 'name' => 'create_categories',        'display_name' => 'انشاء قسم',   'route' => 'categories.create',         'module' => 'categories', 'as' => 'categories.create',      'icon' => null,                  'parent' => $manageCategories->id, 'parent_show' => $manageCategories->id, 'parent_original' => $manageCategories->id,'sidebar_link' => '1', 'appear' => '0', ]);
-        // $updateCategories  = Permission::create([ 'name' => 'update_categories',        'display_name' => 'تعديل قسم',   'route' => 'categories.edit',           'module' => 'categories', 'as' => 'categories.edit',        'icon' => null,                  'parent' => $manageCategories->id, 'parent_show' => $manageCategories->id, 'parent_original' => $manageCategories->id,'sidebar_link' => '1', 'appear' => '0', ]);
-        // $destroyCategories = Permission::create([ 'name' => 'delete_categories',        'display_name' => 'حذف قسم',     'route' => 'categories.destroy',        'module' => 'categories', 'as' => 'categories.destroy',     'icon' => null,                  'parent' => $manageCategories->id, 'parent_show' => $manageCategories->id, 'parent_original' => $manageCategories->id,'sidebar_link' => '1', 'appear' => '0', ]);
 
         //Products
-        $manageProducts = Permission::create([ 'name' => 'manage_products', 'display_name' => 'الخدمات', 'route' => 'products', 'module' => 'products', 'as' => 'products.index', 'icon' => 'fab fa-phoenix-framework', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '10', ]);
+        $manageProducts = Permission::create([ 'name' => 'manage_products', 'display_name' => 'الخدمات', 'route' => 'products.index', 'module' => 'products', 'as' => 'products.index', 'icon' => 'fab fa-phoenix-framework', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '10', ]);
         $manageProducts->parent_show = $manageProducts->id;
         $manageProducts->save();
         $showProducts    = Permission::create([ 'name' => 'show_products',          'display_name' => 'الخدمات',       'route' => 'products.index',          'module' => 'products', 'as' => 'products.index',       'icon' => 'fab fa-phoenix-framework',          'parent' => $manageProducts->id, 'parent_show' => $manageProducts->id, 'parent_original' => $manageProducts->id,'sidebar_link' => '1', 'appear' => '1', ]);
@@ -187,21 +183,23 @@ class EntrustSeeder extends Seeder
         $destroyProducts = Permission::create([ 'name' => 'delete_products',        'display_name' => 'حذف خدمة',     'route' => 'products.destroy',        'module' => 'products', 'as' => 'products.destroy',     'icon' => null,                  'parent' => $manageProducts->id, 'parent_show' => $manageProducts->id, 'parent_original' => $manageProducts->id,'sidebar_link' => '1', 'appear' => '0', ]);
 
         //Bookings
-        $manageBookings = Permission::create([ 'name' => 'manage_bookings', 'display_name' => 'الحجوزات', 'route' => 'bookings', 'module' => 'bookings', 'as' => 'bookings.index', 'icon' => 'fas fa-shopping-bag', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '15', ]);
+        $manageBookings = Permission::create([ 'name' => 'manage_bookings', 'display_name' => 'الحجوزات', 'route' => 'bookings.index', 'module' => 'bookings', 'as' => 'bookings.index', 'icon' => 'fas fa-shopping-bag', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '15', ]);
         $manageBookings->parent_show = $manageBookings->id;
         $manageBookings->save();
-        $showBookings    = Permission::create([ 'name' => 'show_bookings',          'display_name' => 'الحجوزات',       'route' => 'bookings.index',          'module' => 'bookings', 'as' => 'bookings.index',       'icon' => 'fas fa-shopping-bag',          'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '1', ]);
-        $createPBookings  = Permission::create([ 'name' => 'create_bookings',        'display_name' => 'انشاء حجز',   'route' => 'bookings.create',         'module' => 'bookings', 'as' => 'bookings.create',      'icon' => null,                  'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '0', ]);
-        $updatePBookings  = Permission::create([ 'name' => 'update_bookings',        'display_name' => 'تعديل حجز',   'route' => 'bookings.edit',           'module' => 'bookings', 'as' => 'bookings.edit',        'icon' => null,                  'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '0', ]);
-        $destroyBookings = Permission::create([ 'name' => 'delete_bookings',        'display_name' => 'حذف حجز',     'route' => 'bookings.destroy',        'module' => 'bookings', 'as' => 'bookings.destroy',     'icon' => null,                  'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '0', ]);
+            //Pending
+            $showPendingBookings    = Permission::create([ 'name' => 'show_pending_bookings',          'display_name' => 'قائمة الانتظار',       'route' => 'bookings.pending',          'module' => 'bookings', 'as' => 'bookings.pending',       'icon' => 'fas fa-calendar-plus',          'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '1', ]);
+            //Comming
+            $showCommingBookings    = Permission::create([ 'name' => 'show_comming_bookings',          'display_name' => 'الحجوزات المستقبلية',       'route' => 'bookings.comming',          'module' => 'bookings', 'as' => 'bookings.comming',       'icon' => 'fas fa-calendar-alt',          'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '1', ]);
             //Finished
-            $showFinishedBookings    = Permission::create([ 'name' => 'show_finished_bookings',          'display_name' => 'ارشيف الحجوزات',       'route' => 'bookings.finished',          'module' => 'bookings', 'as' => 'bookings.finished',       'icon' => 'fas fa-file-archive',          'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '1', ]);
-
-
-
+            $showFinishedBookings    = Permission::create([ 'name' => 'show_finished_bookings',          'display_name' => 'الحجوزات المنتهية',       'route' => 'bookings.finished',          'module' => 'bookings', 'as' => 'bookings.finished',       'icon' => 'far fa-calendar-check',          'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '1', ]);
+            //All Bookings
+            $showBookings    = Permission::create([ 'name' => 'show_bookings',          'display_name' => 'الحجوزات',       'route' => 'bookings.index',          'module' => 'bookings', 'as' => 'bookings.index',       'icon' => 'fas fa-shopping-bag',          'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '1', ]);
+            $createPBookings  = Permission::create([ 'name' => 'create_bookings',        'display_name' => 'انشاء حجز',   'route' => 'bookings.create',         'module' => 'bookings', 'as' => 'bookings.create',      'icon' => null,                  'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '0', ]);
+            $updatePBookings  = Permission::create([ 'name' => 'update_bookings',        'display_name' => 'تعديل حجز',   'route' => 'bookings.edit',           'module' => 'bookings', 'as' => 'bookings.edit',        'icon' => null,                  'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '0', ]);
+            $destroyBookings = Permission::create([ 'name' => 'delete_bookings',        'display_name' => 'حذف حجز',     'route' => 'bookings.destroy',        'module' => 'bookings', 'as' => 'bookings.destroy',     'icon' => null,                  'parent' => $manageBookings->id, 'parent_show' => $manageBookings->id, 'parent_original' => $manageBookings->id,'sidebar_link' => '1', 'appear' => '0', ]);
 
         //Customers
-        $manageCustomers = Permission::create([ 'name' => 'manage_customers', 'display_name' => 'العملاء', 'route' => 'customers', 'module' => 'customers', 'as' => 'customers.index', 'icon' => 'fas fa-user', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '25', ]);
+        $manageCustomers = Permission::create([ 'name' => 'manage_customers', 'display_name' => 'العملاء', 'route' => 'customers.index', 'module' => 'customers', 'as' => 'customers.index', 'icon' => 'fas fa-user', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '25', ]);
         $manageCustomers->parent_show = $manageCustomers->id;
         $manageCustomers->save();
         $showCustomers    = Permission::create([ 'name' => 'show_customers',          'display_name' => 'العملاء',       'route' => 'customers.index',          'module' => 'customers', 'as' => 'customers.index',       'icon' => 'fas fa-user',         'parent' => $manageCustomers->id, 'parent_show' => $manageCustomers->id, 'parent_original' => $manageCustomers->id,'sidebar_link' => '1', 'appear' => '1', ]);
@@ -211,7 +209,7 @@ class EntrustSeeder extends Seeder
 
 
         //HomePage
-        $manageHome = Permission::create([ 'name' => 'manage_home', 'display_name' => 'صفحة (Homepage)', 'route' => 'home', 'module' => 'home', 'as' => 'home', 'icon' => 'fas fa-house-user', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '25', ]);
+        $manageHome = Permission::create([ 'name' => 'manage_home', 'display_name' => 'صفحة (Homepage)', 'route' => 'sliders.index', 'module' => 'home', 'as' => 'sliders.index', 'icon' => 'fas fa-house-user', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '25', ]);
         $manageHome->parent_show = $manageHome->id;
         $manageHome->save();
         $showSliders    = Permission::create([ 'name' => 'show_sliders',          'display_name' => 'الصور المنزلقة',       'route' => 'sliders.index',          'module' => 'home', 'as' => 'sliders.index',       'icon' => 'fas fa-retweet',         'parent' => $manageHome->id, 'parent_show' => $manageHome->id, 'parent_original' => $manageHome->id,'sidebar_link' => '1', 'appear' => '1', ]);
@@ -220,14 +218,14 @@ class EntrustSeeder extends Seeder
 
 
         //Advs
-        // $manageAdvs = Permission::create([ 'name' => 'manage_advs', 'display_name' => 'الاعلانات', 'route' => 'advs', 'module' => 'advs', 'as' => 'advs.index', 'icon' => 'fas fa-ad', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '25', ]);
+        // $manageAdvs = Permission::create([ 'name' => 'manage_advs', 'display_name' => 'الاعلانات', 'route' => 'advs.index', 'module' => 'advs', 'as' => 'advs.index', 'icon' => 'fas fa-ad', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '25', ]);
         // $manageAdvs->parent_show = $manageAdvs->id;
         // $manageAdvs->save();
         // $showAdvs    = Permission::create([ 'name' => 'show_advs',          'display_name' => 'الاعلانات',       'route' => 'advs.index',          'module' => 'advs', 'as' => 'advs.index',       'icon' => 'fas fa-ad',         'parent' => $manageAdvs->id, 'parent_show' => $manageAdvs->id, 'parent_original' => $manageAdvs->id,'sidebar_link' => '1', 'appear' => '1', ]);
 
 
         //Countries
-        $manageCountries = Permission::create([ 'name' => 'manage_countries', 'display_name' => 'الدول', 'route' => 'countries', 'module' => 'countries', 'as' => 'countries.index', 'icon' => 'fas fa-globe', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '100', ]);
+        $manageCountries = Permission::create([ 'name' => 'manage_countries', 'display_name' => 'الدول', 'route' => 'countries.index', 'module' => 'countries', 'as' => 'countries.index', 'icon' => 'fas fa-globe', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '100', ]);
         $manageCountries->parent_show = $manageCountries->id;
         $manageCountries->save();
         $showCountries    = Permission::create([ 'name' => 'show_countries',          'display_name' => 'الدول',              'route' => 'countries.index',          'module' => 'countries', 'as' => 'countries.index',       'icon' => 'fas fa-globe',        'parent' => $manageCountries->id, 'parent_show' => $manageCountries->id, 'parent_original' => $manageCountries->id,'sidebar_link' => '1', 'appear' => '1', ]);
@@ -237,7 +235,7 @@ class EntrustSeeder extends Seeder
         $showCities    = Permission::create([ 'name' => 'show_cities',          'display_name' => 'المدن',              'route' => 'cities.index',          'module' => 'countries', 'as' => 'cities.index',       'icon' => 'fas fa-university',   'parent' => $manageCountries->id, 'parent_show' => $manageCountries->id, 'parent_original' => $manageCountries->id,'sidebar_link' => '1', 'appear' => '1', ]);
 
         //Contact
-        $manageContacts = Permission::create([ 'name' => 'manage_contacts', 'display_name' => 'الاتصال', 'route' => 'Contacts', 'module' => 'Contacts', 'as' => 'Contacts', 'icon' => 'fas fa-mobile-alt', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '115', ]);
+        $manageContacts = Permission::create([ 'name' => 'manage_contacts', 'display_name' => 'الاتصال', 'route' => 'socials.index', 'module' => 'Contacts', 'as' => 'socials.index', 'icon' => 'fas fa-mobile-alt', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '115', ]);
         $manageContacts->parent_show = $manageContacts->id;
         $manageContacts->save();
             ##Social Media
@@ -248,20 +246,20 @@ class EntrustSeeder extends Seeder
             $showEmails     = Permission::create([ 'name' => 'show_email',  'display_name' => 'البريد الالكتروني',        'route' => 'emails.index',      'module' => 'Contacts',     'as' => 'emails.index',     'icon' => 'fas fa-envelope-open-text',  'parent' => $manageContacts->id, 'parent_show' => $manageContacts->id, 'parent_original' => $manageContacts->id,'sidebar_link' => '1', 'appear' => '1', ]);
 
         //
-        $manageContactUs = Permission::create([ 'name' => 'manage_contactUs_messages', 'display_name' => 'رسائل (تواصل معنا)', 'route' => 'contactUs', 'module' => 'contactUs', 'as' => 'contactUs', 'icon' => 'fas fa-sms', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '120', ]);
+        $manageContactUs = Permission::create([ 'name' => 'manage_contactUs_messages', 'display_name' => 'رسائل (تواصل معنا)', 'route' => 'contact-messages.index', 'module' => 'contactUs', 'as' => 'contactUs', 'icon' => 'fas fa-sms', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '120', ]);
         $manageContactUs->parent_show = $manageContactUs->id;
         $manageContactUs->save();
             $showMessages    = Permission::create([ 'name' => 'show__contactUs_messages', 'display_name' => 'الرسائل',   'route' => 'contact-messages.index',     'module' => 'contactUs',     'as' => 'contact-messages.index',    'icon' => 'fas fa-sms',           'parent' => $manageContactUs->id, 'parent_show' => $manageContactUs->id, 'parent_original' => $manageContactUs->id,'sidebar_link' => '1', 'appear' => '1', ]);
 
         //About App
-        $manageAbout = Permission::create([ 'name' => 'manage_abouts', 'display_name' => 'من نحن', 'route' => 'Abouts', 'module' => 'Abouts', 'as' => 'Abouts', 'icon' => 'fas fa-id-card-alt', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '123', ]);
+        $manageAbout = Permission::create([ 'name' => 'manage_abouts', 'display_name' => 'من نحن', 'route' => 'abouts.index', 'module' => 'Abouts', 'as' => 'Abouts', 'icon' => 'fas fa-id-card-alt', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '123', ]);
         $manageAbout->parent_show = $manageAbout->id;
         $manageAbout->save();
             $showAbout    = Permission::create([ 'name' => 'show_abouts', 'display_name' => 'من نحن',   'route' => 'abouts.index',     'module' => 'Abouts',     'as' => 'abouts.index',    'icon' => 'fas fa-address-card',           'parent' => $manageAbout->id, 'parent_show' => $manageAbout->id, 'parent_original' => $manageAbout->id,'sidebar_link' => '1', 'appear' => '1', ]);
 
 
         //Settings
-        $manageSettings = Permission::create([ 'name' => 'manage_settings', 'display_name' => 'الإعدادات', 'route' => 'settings', 'module' => 'settings', 'as' => 'settings', 'icon' => 'fas fa-cogs', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '125', ]);
+        $manageSettings = Permission::create([ 'name' => 'manage_settings', 'display_name' => 'الإعدادات', 'route' => 'logos.index', 'module' => 'settings', 'as' => 'logos.index', 'icon' => 'fas fa-cogs', 'parent' => '0', 'parent_original' => '0','sidebar_link' => '1', 'appear' => '1', 'ordering' => '125', ]);
         $manageSettings->parent_show = $manageSettings->id;
         $manageSettings->save();
             ##Logo

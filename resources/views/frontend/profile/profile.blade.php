@@ -99,30 +99,75 @@
             <div class=" reviews-div ">
                 <div class="container-msg-1 mb-3 mt-3  " id="myDIV1" style="display: none;">
                     @foreach ($bookings as $booking)
-                        <div class="des-sec-1 notification-sec  menu-{{ $booking->id }}" id="close-div-{{ $booking->id }} ">
-                            <button id='close ' class="close-ads-sec1 toggle-btn toggle-btn-{{ $booking->id }}">
-                                <i class="fas fa-times"></i>
-                            </button>
-                            <div class="notification-containt">
-                                <div class="media">
-                                    @if ($booking->product_id != '')
-                                        <img src="{{ asset($booking->product->firstMedia->file_name) }}" class="image-products-1" alt="...">
-                                        <div class="media-body">
-                                            <h5 class="mt-0">{{ $booking->product->name }}</h5>
-                                            <p class="contact-details">{{ $booking->category->name }}</p>
-                                            <p class="contact-details">{{ \Carbon\Carbon::parse($booking->created_at)->translatedFormat('l j F Y H:i a') }}</p>
-                                        </div>
-                                    @else
-                                        <img src="{{ asset($booking->category->cover) }}" class="image-products-1" alt="...">
-                                        <div class="media-body">
-                                            <h5 class="mt-0">{{ $booking->category->name }}</h5>
-                                            <p class="contact-details">{{ \Carbon\Carbon::parse($booking->created_at)->translatedFormat('l j F Y H:i a') }}</p>
-                                        </div>
-                                    @endif
+                        @if ($booking->day != date('Y-m-d') )
+                            <div class="des-sec-1 notification-sec  menu-{{ $booking->id }}" id="close-div-{{ $booking->id }} ">
+                                <button id='close ' class="close-ads-sec1 toggle-btn toggle-btn-{{ $booking->id }}">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <div class="notification-containt">
+                                    <div class="media">
+                                        @if ($booking->product_id != '')
+                                            <img src="{{ asset($booking->product->firstMedia->file_name) }}" class="image-products-1" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-0">{{ $booking->product->name }}</h5>
+                                                <p class="contact-details">{{ $booking->category->name }}</p>
+                                                <p class="contact-details">{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->start)) }}</p>
+                                                @if($booking->status == '1')
+                                                    <p style="color:green">تمت الموافقة</p>
+                                                @else
+                                                    <p style="color:red">قائمة الانتظار</p>
+                                                @endif
+                                            </div>
+                                        @else
+                                            <img src="{{ asset($booking->category->cover) }}" class="image-products-1" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-0">{{ $booking->category->name }}</h5>
+                                                <p class="contact-details">{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->start)) }}</p>
+                                                @if($booking->status == '1')
+                                                    <p style="color:green">تمت الموافقة</p>
+                                                @else
+                                                    <p style="color:red">قائمة الانتظار</p>
+                                                @endif
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
-
                             </div>
-                        </div>
+                        @elseif ( $booking->day == date('Y-m-d') && (date('h:i A', strtotime($booking->start))) > date('h:i A', strtotime('+2 hours')) )
+                            <div class="des-sec-1 notification-sec  menu-{{ $booking->id }}" id="close-div-{{ $booking->id }} ">
+                                <button id='close ' class="close-ads-sec1 toggle-btn toggle-btn-{{ $booking->id }}">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <div class="notification-containt">
+                                    <div class="media">
+                                        @if ($booking->product_id != '')
+                                            <img src="{{ asset($booking->product->firstMedia->file_name) }}" class="image-products-1" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-0">{{ $booking->product->name }}</h5>
+                                                <p class="contact-details">{{ $booking->category->name }}</p>
+                                                <p class="contact-details">{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->start)) }}</p>
+                                                @if($booking->status == '1')
+                                                    <p style="color:green">تمت الموافقة</p>
+                                                @else
+                                                    <p style="color:red">قائمة الانتظار</p>
+                                                @endif
+                                            </div>
+                                        @else
+                                            <img src="{{ asset($booking->category->cover) }}" class="image-products-1" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-0">{{ $booking->category->name }}</h5>
+                                                <p class="contact-details">{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->start)) }}</p>
+                                                @if($booking->status == '1')
+                                                    <p style="color:green">تمت الموافقة</p>
+                                                @else
+                                                    <p style="color:red">قائمة الانتظار</p>
+                                                @endif
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
@@ -136,18 +181,35 @@
                             <div class="notification-containt">
                                 <div class="media">
                                     @if ($booking->product_id != '')
-                                        <img src="{{ asset($booking->product->firstMedia->file_name) }}" class="image-products-1" alt="...">
-                                        <div class="media-body">
-                                            <h5 class="mt-0">{{ $booking->product->name }}</h5>
-                                            <p class="contact-details">{{ $booking->category->name }}</p>
-                                            <p class="contact-details">{{ \Carbon\Carbon::parse($booking->created_at)->translatedFormat('l j F Y H:i a') }}</p>
-                                        </div>
+                                        @if ($booking->day < date('Y-m-d') )
+                                            <img src="{{ asset($booking->product->firstMedia->file_name) }}" class="image-products-1" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-0">{{ $booking->product->name }}</h5>
+                                                <p class="contact-details">{{ $booking->category->name }}</p>
+                                                <p class="contact-details">{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->start)) }}</p>
+                                            </div>
+                                        @elseif ( $booking->day == date('Y-m-d') && (date('h:i A', strtotime($booking->start))) < date('h:i A', strtotime('+2 hours')) )
+                                            <img src="{{ asset($booking->product->firstMedia->file_name) }}" class="image-products-1" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-0">{{ $booking->product->name }}</h5>
+                                                <p class="contact-details">{{ $booking->category->name }}</p>
+                                                <p class="contact-details">{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->start)) }}</p>
+                                            </div>
+                                        @endif
                                     @else
-                                        <img src="{{ asset($booking->category->cover) }}" class="image-products-1" alt="...">
-                                        <div class="media-body">
-                                            <h5 class="mt-0">{{ $booking->category->name }}</h5>
-                                            <p class="contact-details">{{ \Carbon\Carbon::parse($booking->created_at)->translatedFormat('l j F Y H:i a') }}</p>
-                                        </div>
+                                        @if ($booking->day < date('Y-m-d') )
+                                            <img src="{{ asset($booking->category->cover) }}" class="image-products-1" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-0">{{ $booking->category->name }}</h5>
+                                                <p class="contact-details">{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->start)) }}</p>
+                                            </div>
+                                        @elseif ( $booking->day == date('Y-m-d') && (date('h:i A', strtotime($booking->start))) < date('h:i A', strtotime('+2 hours')) )
+                                            <img src="{{ asset($booking->category->cover) }}" class="image-products-1" alt="...">
+                                            <div class="media-body">
+                                                <h5 class="mt-0">{{ $booking->category->name }}</h5>
+                                                <p class="contact-details">{{ \Carbon\Carbon::parse($booking->day)->translatedFormat('l j F Y') }} - {{ date('h:i A', strtotime($booking->start)) }}</p>
+                                            </div>
+                                        @endif
                                     @endif
                                 </div>
                             </div>

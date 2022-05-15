@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('slug')->unique();
             $table->longText('description')->nullable();
             $table->double('price');
-            $table->unsignedBigInteger('quantity')->default(0);
+            $table->unsignedBigInteger('quantity')->nullable();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->boolean('featured')->default(false);
             $table->string('phone')->nullable();
