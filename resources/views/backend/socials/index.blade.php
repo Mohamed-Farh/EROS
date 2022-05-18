@@ -141,7 +141,7 @@
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: '{{ route('admin.socials.changeStatus') }}',
+                    url: '{{ route('admin.socials_changeStatus') }}',
                     data: {
                         'status': status,
                         'cat_id': cat_id

@@ -101,7 +101,7 @@
                                     </span>
                                     <div class="d-flex flex-column text-right">
                                         <span class="text-dark-75 font-weight-bolder font-size-h3">{{ $categoryCount }}</span>
-                                        <span class="text-muted font-weight-bold mt-2"> الخدمات</span>
+                                        <span class="text-muted font-weight-bold mt-2"> أنواع الخدمات</span>
                                     </div>
                                 </div>
                                 <div class="card-rounded-bottom" data-color="success" style="height: 150px">
