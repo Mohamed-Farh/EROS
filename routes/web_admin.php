@@ -135,7 +135,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.' ], function(){
 
             /*  socials   */
             Route::resource('socials'    ,SocialMediaController::class);
-            Route::get('Contacts', [SocialMediaController::class,'changeStatus'])->name('Contacts');
+            Route::get('socials-changeStatus', [SocialMediaController::class,'changeStatus'])->name('socials.changeStatus');
             Route::post('socials-destroyAll', [SocialMediaController::class,'massDestroy'])->name('socials.massDestroy');
             /*  phones   */
             Route::resource('phones'    ,PhoneController::class);
